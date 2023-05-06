@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/mainTitle"
+        android:layout_width="156dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="132dp"
+        android:fontFamily="@font/leaguespartanextrabold"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="-1sp"
+        android:text="@string/gorent"
+        android:textColor="#FEFEFE"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="156dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="188dp"
+        android:contentDescription="@string/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/maintext1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="544dp"
+        android:fontFamily="@font/opensauceonebold"
+        android:text="@string/welcome"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mainText2"
+        android:layout_width="289dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/opensauceoneregular"
+        android:lineSpacingExtra="4sp"
+        android:text="@string/easy_way_to_rent_the_best_vehicle_for_you_with_the_best_price"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maintext1"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/mainbutton"
+        android:layout_width="284dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="55dp"
+        android:background="@drawable/roundedbuton"
+        android:fontFamily="@font/opensauceonesemibold"
+        android:letterSpacing="0"
+        android:text="@string/sign_in"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainText2" />
+
+    <TextView
+        android:id="@+id/maintext3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/opensauceoneregular"
+        android:text="@string/don_t_have_an_account"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mainbutton" />
+
+    <TextView
+        android:id="@+id/maintext4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="171dp"
+        android:layout_marginTop="52dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/opensauceoneregular"
+        android:text="@string/register"
+        android:textColor="@color/purple"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/maintext3"
+        app:layout_constraintTop_toTopOf="@+id/mainbutton"
+        tools:ignore="TouchTargetSizeCheck" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
