@@ -31,7 +31,7 @@ public class DBhelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "ID";
 
     public DBhelper(@Nullable Context context) {
-        super(context, "vehicle.db", null, 1);
+        super(context, "vehicleDB.db", null, 1);
     }
 
     // when creating the database

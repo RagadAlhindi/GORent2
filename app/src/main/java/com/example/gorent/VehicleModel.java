@@ -1,7 +1,7 @@
 package com.example.gorent;
 
 public class VehicleModel {
-//
+
     private int id;
     private String plateNo;
     private String model;
@@ -74,33 +74,6 @@ public class VehicleModel {
         this.id = id;
     }
 
-    public void setPlateNo(String plateNo) {
-        this.plateNo = plateNo;
-    }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-    public void setRent(int rent) {
-        this.rent = rent;
-    }
 
 }
