@@ -61,7 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        facebookicon=(Button)findViewById(R.id.signupYoutubeButton);
+        facebookicon=(Button)findViewById(R.id.signupFacebookButton );
         facebookicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -71,7 +71,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        youtubeicon=(Button)findViewById(R.id.signupFacebookButton);
+        youtubeicon=(Button)findViewById(R.id.signupYoutubeButton);
         youtubeicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
