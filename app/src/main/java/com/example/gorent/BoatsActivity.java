@@ -61,7 +61,7 @@ public class BoatsActivity extends AppCompatActivity {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+                Intent intent =  new Intent(getApplicationContext(), LogInActivity.class);
                 startActivity(intent);
             }
         });

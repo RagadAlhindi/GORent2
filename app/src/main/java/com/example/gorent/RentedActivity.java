@@ -62,6 +62,7 @@ public class RentedActivity extends AppCompatActivity {
         logouticon= (ImageView) findViewById(R.id.logouticon);
         logouticon.setOnClickListener(new View.OnClickListener(){
             @Override
+
             public void onClick(View view) {
                 builder.show();
 
