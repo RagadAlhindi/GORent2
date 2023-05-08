@@ -248,7 +248,7 @@
                 android:background="@drawable/roundedbuton"
                 android:fontFamily="@font/opensauceonesemibold"
                 android:letterSpacing="0"
-                android:text="@string/sign_in"
+                android:text="SIGN-UP"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
