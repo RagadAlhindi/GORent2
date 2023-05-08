@@ -12,7 +12,7 @@ public class RentedActivity extends AppCompatActivity {
     ImageView homeicon;
     ImageView offersicon;
     ImageView addicon;
-    ImageView profileicon;
+    ImageView logouticon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +44,11 @@ public class RentedActivity extends AppCompatActivity {
         });
 
 
-        profileicon= (ImageView) findViewById(R.id.profileicon);
-        profileicon.setOnClickListener(new View.OnClickListener(){
+        logouticon= (ImageView) findViewById(R.id.logouticon);
+        logouticon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RentedActivity.this, ProfileActivity.class));
+
             }
         });
 

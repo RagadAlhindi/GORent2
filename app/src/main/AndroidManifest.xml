@@ -26,9 +26,6 @@
             android:name=".CarsActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".OffersActivity"
             android:exported="false" />
         <activity
