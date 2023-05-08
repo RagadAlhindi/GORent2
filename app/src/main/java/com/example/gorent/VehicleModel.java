@@ -1,7 +1,7 @@
 package com.example.gorent;
 
 public class VehicleModel {
-
+//
     private int id;
     private String plateNo;
     private String model;
