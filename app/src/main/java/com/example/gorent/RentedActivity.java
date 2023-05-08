@@ -59,6 +59,7 @@ public class RentedActivity extends AppCompatActivity {
         builder.setNegativeButton("No",null);
 
 
+
         logouticon= (ImageView) findViewById(R.id.logouticon);
         logouticon.setOnClickListener(new View.OnClickListener(){
             @Override

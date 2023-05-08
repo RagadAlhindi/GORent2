@@ -55,6 +55,7 @@ public class BoatsActivity extends AppCompatActivity {
         });
 
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Log out");
         builder.setMessage("Are you sure you want to log out?");

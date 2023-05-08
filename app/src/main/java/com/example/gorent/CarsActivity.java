@@ -74,6 +74,7 @@ public class CarsActivity extends AppCompatActivity {
         logouticon.setOnClickListener(new View.OnClickListener(){
             @Override
 
+
             public void onClick(View view) {
                 builder.show();
 

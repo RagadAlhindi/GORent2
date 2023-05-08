@@ -62,6 +62,7 @@ public class OffersActivity extends AppCompatActivity {
         logouticon.setOnClickListener(new View.OnClickListener(){
             @Override
 
+
             public void onClick(View view) {
                 builder.show();
 
