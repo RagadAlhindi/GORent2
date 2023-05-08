@@ -1,7 +1,9 @@
 package com.example.gorent;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -52,10 +54,25 @@ public class BoatsActivity extends AppCompatActivity {
             }
         });
 
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Log out");
+        builder.setMessage("Are you sure you want to log out?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("No",null);
+
+
         logouticon= (ImageView) findViewById(R.id.logouticon);
         logouticon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                builder.show();
 
             }
         });
