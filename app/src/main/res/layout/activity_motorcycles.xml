@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/motorcyclestitle"
-        android:layout_width="341dp"
+        android:layout_width="340dp"
         android:layout_height="43dp"
         android:layout_marginTop="35dp"
         android:fontFamily="@font/opensauceonebold"

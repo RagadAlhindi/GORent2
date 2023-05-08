@@ -150,7 +150,7 @@
                 android:drawableStart="@drawable/customageicon"
                 android:drawablePadding="12sp"
                 android:ems="10"
-                android:inputType="numer"
+                android:inputType="number"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textCursorDrawable="@null"
