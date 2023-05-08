@@ -39,76 +39,78 @@
 
     <TextView
         android:id="@+id/maintext1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="544dp"
+        android:layout_width="274dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="193dp"
         android:fontFamily="@font/opensauceonebold"
         android:text="@string/welcome"
         android:textColor="#000000"
         android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/mainText2"
-        android:layout_width="289dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="275dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="133dp"
         android:fontFamily="@font/opensauceoneregular"
         android:lineSpacingExtra="4sp"
         android:text="@string/easy_way_to_rent_the_best_vehicle_for_you_with_the_best_price"
         android:textColor="#000000"
         android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/maintext1"
         tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/mainbutton"
         android:layout_width="284dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="55dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="81dp"
         android:background="@drawable/roundedbuton"
         android:fontFamily="@font/opensauceonesemibold"
         android:letterSpacing="0"
         android:text="@string/sign_in"
-        android:textSize="20sp"
         android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainText2" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/maintext3"
-        android:layout_width="wrap_content"
+        android:layout_width="284dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginBottom="60dp"
         android:fontFamily="@font/opensauceoneregular"
         android:text="@string/don_t_have_an_account"
         android:textColor="#000000"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mainbutton" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/maintext4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="171dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="60dp"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="@font/opensauceoneregular"
         android:text="@string/register"
         android:textColor="@color/purple"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/maintext3"
-        app:layout_constraintTop_toTopOf="@+id/mainbutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 
 
