@@ -8,11 +8,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-public class HomeAvtivity extends AppCompatActivity {
+public class CarsActivity extends AppCompatActivity {
 
-    ImageButton carsbutton;
-    ImageButton boatsbutton;
-    ImageButton motorcyclesbutton;
+    ImageView homeicon;
     ImageView offersicon;
     ImageView addicon;
     ImageView basketicon;
@@ -21,30 +19,14 @@ public class HomeAvtivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_cars);
 
 
-        carsbutton=(ImageButton)findViewById(R.id.carsbutton);
-        carsbutton.setOnClickListener(new View.OnClickListener(){
+        homeicon= (ImageView) findViewById(R.id.homeicon);
+        homeicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, CarsActivity.class));
-            }
-        });
-
-        boatsbutton=(ImageButton)findViewById(R.id.boatsbutton);
-        boatsbutton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, BoatsActivity.class));
-            }
-        });
-
-        motorcyclesbutton=(ImageButton)findViewById(R.id.motorcyclesbutton);
-        motorcyclesbutton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, MotorcyclesActivity.class));
+                startActivity(new Intent(CarsActivity.this, HomeAvtivity.class));
             }
         });
 
@@ -52,7 +34,7 @@ public class HomeAvtivity extends AppCompatActivity {
         offersicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, OffersActivity.class));
+                startActivity(new Intent(CarsActivity.this, OffersActivity.class));
             }
         });
 
@@ -60,7 +42,7 @@ public class HomeAvtivity extends AppCompatActivity {
         addicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, AddActivity.class));
+                startActivity(new Intent(CarsActivity.this, AddActivity.class));
             }
         });
 
@@ -68,7 +50,7 @@ public class HomeAvtivity extends AppCompatActivity {
         basketicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, RentedActivity.class));
+                startActivity(new Intent(CarsActivity.this, RentedActivity.class));
             }
         });
 
@@ -76,9 +58,8 @@ public class HomeAvtivity extends AppCompatActivity {
         profileicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, ProfileActivity.class));
+                startActivity(new Intent(CarsActivity.this, ProfileActivity.class));
             }
         });
-
     }
 }
