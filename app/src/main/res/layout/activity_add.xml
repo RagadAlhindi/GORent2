@@ -8,6 +8,7 @@
     tools:context=".AddActivity">
 
 
+
     <EditText
         android:id="@+id/searchtext"
         android:layout_width="343dp"
@@ -31,6 +32,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
+
+
+
+
+
     <TextView
         android:id="@+id/addtitle"
         android:layout_width="225dp"
@@ -48,6 +54,289 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextSizeCheck" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="302dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/menuphoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchtext">
+
+        <TextView
+            android:id="@+id/plateNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Plate Number:"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/plate"
+            android:layout_width="252dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="3dp"
+            android:background="#e7d7ef"
+            android:hint=" Enter plate No."
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="242dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/menuphoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/VehicleModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Vehicle model:"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/model"
+            android:layout_width="239dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="13dp"
+            android:background="#e7d7ef"
+            android:hint=" Enter the model"
+            android:inputType="text"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="188dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/menuphoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/Year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Year of manufacture:"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/year"
+            android:layout_width="164dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="32dp"
+            android:background="#e7d7ef"
+            android:hint=" Enter the year"
+            android:inputType="number"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="149dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/menuphoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="35dp"
+            android:text="Type:"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Car"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/boat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Boat"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/motorcycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Motorcycle"
+            android:textSize="20dp" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="388dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="103dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/menuphoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="City:"
+            android:textSize="20dp" />
+
+        <Spinner
+            android:id="@+id/SpCountry"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:background="#e7d7ef"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="407dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="17dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/menuphoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+
+            android:text="Description:"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/userDescription"
+            android:layout_width="261dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:background="#e7d7ef"
+            android:hint=" Enter the description"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="391dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/menuphoto"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+        <TextView
+            android:id="@+id/Rent"
+            android:layout_width="152dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Rent Amount:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/Amount"
+            android:layout_width="241dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:background="#e7d7ef"
+            android:ems="10"
+            android:hint="Enter rent amount"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="405dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="208dp"
+        app:layout_constraintEnd_toEndOf="@+id/menuphoto"
+        app:layout_constraintEnd_toStartOf="@+id/menuphoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/menuphoto"
+        tools:context=".MainActivity"
+        tools:ignore="HardcodedText,MissingConstraints">
+
+        <!--Button to open the image selector-->
+        <Button
+            android:id="@+id/BSelectImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#e7d7ef"
+            android:text="SELECT IMAGE"
+            android:textColor="#66347F"
+            android:textSize="18sp" />
+
+        <!--ImageView to preview the selected image-->
+        <ImageView
+            android:id="@+id/IVPreviewImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/BSelectImage"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="9dp"
+        android:backgroundTint="#e7d7ef"
+        android:text="ADD"
+        android:textColor="#66347F"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/listicon"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
     <ImageView
         android:id="@+id/menuphoto"
@@ -57,6 +346,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/menusvg" />
+
 
 
     <TextView
