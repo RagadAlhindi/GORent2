@@ -13,7 +13,7 @@ public class BoatsActivity extends AppCompatActivity {
     ImageView offersicon;
     ImageView addicon;
     ImageView basketicon;
-    ImageView profileicon;
+    ImageView logouticon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +52,11 @@ public class BoatsActivity extends AppCompatActivity {
             }
         });
 
-        profileicon= (ImageView) findViewById(R.id.profileicon);
-        profileicon.setOnClickListener(new View.OnClickListener(){
+        logouticon= (ImageView) findViewById(R.id.logouticon);
+        logouticon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(BoatsActivity.this, ProfileActivity.class));
+
             }
         });
 
