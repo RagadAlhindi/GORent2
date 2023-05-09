@@ -254,12 +254,13 @@
     <LinearLayout
         android:layout_width="391dp"
         android:layout_height="31dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="1dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/menuphoto"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toStartOf="@+id/menuphoto"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
         <TextView
@@ -282,14 +283,13 @@
             android:inputType="number" />
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout"
         android:layout_width="405dp"
         android:layout_height="88dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="208dp"
-        app:layout_constraintEnd_toEndOf="@+id/menuphoto"
-        app:layout_constraintEnd_toStartOf="@+id/menuphoto"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/menuphoto"
         tools:context=".MainActivity"
@@ -307,18 +307,17 @@
             android:textColor="#66347F"
             android:textSize="18sp" />
 
-        <!--ImageView to preview the selected image-->
         <ImageView
             android:id="@+id/IVPreviewImage"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_below="@id/BSelectImage"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            />
+            android:layout_width="188dp"
+            android:layout_height="117dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="17dp" />
 
-    </RelativeLayout>
+        <!--ImageView to preview the selected image-->
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnSubmit"
@@ -336,8 +335,8 @@
 
     <ImageView
         android:id="@+id/menuphoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="397dp"
+        android:layout_height="283dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/menusvg" />
@@ -458,6 +457,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/menuphoto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +48,8 @@ public class AddActivity extends AppCompatActivity {
     String selectedType ="";
     String selectedCity ="";
 
-    String URL ="";
+
+
 
     DBhelper dataBaseHelper;
     @Override
@@ -182,6 +186,11 @@ public class AddActivity extends AppCompatActivity {
                     boolean b = dataBaseHelper.addOne(vehicleMod);
                     Toast.makeText(AddActivity.this, "SUCCESS= "+ b, Toast.LENGTH_SHORT).show();
 
+                  /*  Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.);
+                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
+                    byte[] img = byteArray.toByteArray();*/
+
 
                 }
             }
@@ -232,6 +241,8 @@ public class AddActivity extends AppCompatActivity {
         BSelectImage = findViewById(R.id.BSelectImage);
         IVPreviewImage = findViewById(R.id.IVPreviewImage);
 
+
+
         // handle the Choose Image button to trigger
         // the image chooser function
         BSelectImage.setOnClickListener(new View.OnClickListener() {
@@ -267,7 +278,7 @@ public class AddActivity extends AppCompatActivity {
             if (requestCode == SELECT_PICTURE) {
                 // Get the url of the image from data
                 Uri selectedImageUri = data.getData();
-                URL = String.valueOf(selectedImageUri);
+
                 if (null != selectedImageUri) {
                     // update the preview image in the layout
                     IVPreviewImage.setImageURI(selectedImageUri);
