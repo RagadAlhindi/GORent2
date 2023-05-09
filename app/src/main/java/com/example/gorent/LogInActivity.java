@@ -19,7 +19,7 @@ public class LogInActivity extends AppCompatActivity {
     EditText Email, Password;
 
 
-    DBHelperr DB;
+    DBhelper DB;
     Button loginButton;
     Button backbutton;
     TextView logintext6;
@@ -35,7 +35,7 @@ public class LogInActivity extends AppCompatActivity {
         Password = findViewById(R.id.loginEnteredPassword);
 
         loginButton = findViewById(R.id.loginbutton);
-        DB = new DBHelperr(this);
+        DB = new DBhelper(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

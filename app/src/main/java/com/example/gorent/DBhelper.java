@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DBhelper extends SQLiteOpenHelper {
 
-
+// for vehicls table
     public static final String VEHICLE_TABLE = "Vehicle_Table";
     public static final String COLUMN_VEHICLE_PLATE = "VEHICLE_PLATE";
     public static final String COLUMN_VEHICLE_MODEL = "VEHICLE_MODEL";
@@ -30,8 +30,16 @@ public class DBhelper extends SQLiteOpenHelper {
     public static final String COLUMN_VEHICLE_RENT= "VEHICLE_RENT";
     public static final String COLUMN_ID = "ID";
 
+
+    // for log in table
+    public static final String TABLENAME = "users";
+    public static final String COL1 = "email";
+    public static final String COL2 = "password";
+    public static final String COL3 = "name";
+    public static final String COL4 = "age";
+
     public DBhelper(@Nullable Context context) {
-        super(context, "vehicleDB.db", null, 1);
+        super(context, "GORENT.db", null, 1);
     }
 
     // when creating the database
@@ -39,11 +47,14 @@ public class DBhelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createTableStatement = "Create TABLE " + VEHICLE_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_VEHICLE_PLATE + " TEXT, " + COLUMN_VEHICLE_MODEL + " TEXT, " + COLUMN_VEHICLE_YEAR + " INT, "+ COLUMN_VEHICLE_TYPE +" TEXT, " + COLUMN_VEHICLE_LOCATION + " TEXT, " + COLUMN_VEHICLE_DESCRIPTION + " TEXT, "  + COLUMN_VEHICLE_RENT + " INT)";
         sqLiteDatabase.execSQL(createTableStatement);
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLENAME + " (" + COL1 + " TEXT PRIMARY KEY, " + COL2 + " TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT)");
+
 
     }
     // when upgrading
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        sqLiteDatabase.execSQL("drop Table if exists " + TABLENAME);
 
     }
 
@@ -108,6 +119,35 @@ public class DBhelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return returnList;
+    }
+
+
+    public Boolean insertData(String email, String password, String name, String age) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL1, email);
+        contentValues.put(COL2, password);
+        contentValues.put(COL3, name);
+        contentValues.put(COL4, age);
+
+        long result = MyDB.insert(TABLENAME, null, contentValues);
+        if (result == -1) return false;
+        else
+            return true;
+    }
+
+    public Boolean checkEmail(String email) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from " + TABLENAME + " where " + COL1 + " = ?", new String[]{email});
+        if (cursor.getCount() > 0) return true;
+        return false;
+    }
+
+    public Boolean checkEmailPassword(String email, String password) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from " + TABLENAME + " where " + COL1 + " = ? and " + COL2 + " = ?", new String[]{email, password});
+        if (cursor.getCount() > 0) return true;
+        return false;
     }
 
 }

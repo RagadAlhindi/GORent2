@@ -19,7 +19,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     EditText signupEnteredName, signupEnteredAge, signupEnteredEmail, signupEnteredPassword;
 
-    DBHelperr DB;
+    DBhelper DB;
 
     Button signupButton;
     Button backbutton;
@@ -39,7 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         signupButton = (Button) findViewById(R.id.signupbutton);
 
-        DB = new DBHelperr(this);
+        DB = new DBhelper(this);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
