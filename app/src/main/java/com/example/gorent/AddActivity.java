@@ -110,7 +110,6 @@ public class AddActivity extends AppCompatActivity {
         Year = findViewById(R.id.year);
         Amount = findViewById(R.id.Amount);
         UserComment = findViewById(R.id.userDescription);
-
         car = findViewById(R.id.car);
         boat = findViewById(R.id.boat);
         motro = findViewById(R.id.motorcycle);
@@ -221,6 +220,7 @@ public class AddActivity extends AppCompatActivity {
         List<String> categoryCountry = new ArrayList<>();
         categoryCountry.add("Select City");
         categoryCountry.add("Abha");
+        categoryCountry.add("AlBaha");
         categoryCountry.add("Dammam");
         categoryCountry.add("Hail");
         categoryCountry.add("Jazan");
@@ -229,6 +229,9 @@ public class AddActivity extends AppCompatActivity {
         categoryCountry.add("Mekkah");
         categoryCountry.add("Riyadh");
         categoryCountry.add("Taif");
+
+
+
 
 
         ArrayAdapter<String> arrayAdapter;
