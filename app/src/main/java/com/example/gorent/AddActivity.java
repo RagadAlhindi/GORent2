@@ -48,11 +48,17 @@ public class AddActivity extends AppCompatActivity {
     String URL ="";
 
 
-    DBhelper dataBaseHelper;
+    DBHelperr dataBaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+        Intent intent = getIntent();
+        String userEmail = intent.getStringExtra("userEmail");
+
+
+
+
 
         homeicon= (ImageView) findViewById(R.id.homeicon);
         homeicon.setOnClickListener(new View.OnClickListener(){
@@ -117,7 +123,7 @@ public class AddActivity extends AppCompatActivity {
 
 
 
-        dataBaseHelper = new DBhelper(AddActivity.this);
+        dataBaseHelper = new DBHelperr(AddActivity.this);
 
 
 
@@ -127,6 +133,7 @@ public class AddActivity extends AppCompatActivity {
         SubmitSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (((RadioButton)car).isChecked()) {
                     selectedType = "car";
                 } else if (((RadioButton)boat).isChecked()) {
@@ -172,8 +179,8 @@ public class AddActivity extends AppCompatActivity {
                     VehicleModel vehicleMod;
                     try {
                         vehicleMod = new VehicleModel(-1, Plate, Model, Integer.parseInt(year),selectedType,selectedCity, comment, Integer.parseInt(amount) );
-                        DBhelper dataBaseHelper = new DBhelper(AddActivity.this);
-                        boolean b = dataBaseHelper.addOne(vehicleMod);
+                        DBHelperr dataBaseHelper = new DBHelperr(AddActivity.this);
+                        boolean b = dataBaseHelper.addOne(vehicleMod, userEmail);
                         if(b==true){
 
 

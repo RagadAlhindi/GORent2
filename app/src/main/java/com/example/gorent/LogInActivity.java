@@ -19,7 +19,7 @@ public class LogInActivity extends AppCompatActivity {
     EditText Email, Password;
 
 
-    DBhelper DB;
+    DBHelperr DB;
     Button loginButton;
     Button backbutton;
     TextView logintext6;
@@ -35,7 +35,7 @@ public class LogInActivity extends AppCompatActivity {
         Password = findViewById(R.id.loginEnteredPassword);
 
         loginButton = findViewById(R.id.loginbutton);
-        DB = new DBhelper(this);
+        DB = new DBHelperr(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,11 +43,14 @@ public class LogInActivity extends AppCompatActivity {
                 String email = Email.getText().toString();
                 String pass = Password.getText().toString();
 
+
                 if(email.equals("")||pass.equals(""))
                     Toast.makeText(LogInActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
                 else{
                     Boolean check = DB.checkEmailPassword(email, pass);
                     if (check){
+                        Intent i = new Intent(LogInActivity.this, AddActivity.class);
+                        i.putExtra("userEmail", email);
                         Toast.makeText(LogInActivity.this, "Sign in successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), HomeAvtivity.class);
                         startActivity(intent);

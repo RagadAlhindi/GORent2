@@ -27,7 +27,7 @@ public class MotorcyclesActivity extends AppCompatActivity {
 
     ArrayList<String> model,type,rent;
 
-    DBhelper DB;
+    DBHelperr DB;
 
     MyAdapter adapter;
 
@@ -94,7 +94,7 @@ public class MotorcyclesActivity extends AppCompatActivity {
         });
 
 
-        DB = new DBhelper(this);
+        DB = new DBHelperr(this);
         model=new ArrayList<>();
         type=new ArrayList<>();
         rent=new ArrayList<>();
