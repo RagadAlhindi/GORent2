@@ -2,12 +2,18 @@ package com.example.gorent;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class BoatsActivity extends AppCompatActivity {
 
@@ -16,6 +22,15 @@ public class BoatsActivity extends AppCompatActivity {
     ImageView addicon;
     ImageView basketicon;
     ImageView logouticon;
+
+
+    RecyclerView recyclerView;
+
+    ArrayList<String> model,type,rent;
+
+    DBhelper DB;
+
+    MyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +92,39 @@ public class BoatsActivity extends AppCompatActivity {
 
             }
         });
+
+
+        DB = new DBhelper(this);
+        model=new ArrayList<>();
+        type=new ArrayList<>();
+        rent=new ArrayList<>();
+        recyclerView=findViewById(R.id.recyclerview);
+        adapter=new MyAdapter(this,model,type,rent);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displaydata();
+
+
+
+
+    }
+
+    private void displaydata() {
+        Cursor cursor = DB.getdata();
+        if(cursor.getCount()==0){
+            Toast.makeText(this, "No cars for rent", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else{
+            while(cursor.moveToNext()){
+                if (cursor.getString(4).equals("boat")) {
+                    model.add(cursor.getString(2));
+                    type.add(cursor.getString(3));
+                    rent.add(cursor.getString(7));
+                }
+            }
+        }
+
 
     }
 }

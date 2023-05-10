@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +18,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +45,7 @@ public class AddActivity extends AppCompatActivity {
     String selectedType ="";
     String selectedCity ="";
 
-
+    String URL ="";
 
 
     DBhelper dataBaseHelper;
@@ -170,27 +167,50 @@ public class AddActivity extends AppCompatActivity {
                     Colector += "Year of manufacture:  "+ year + "\n";
                     Colector += "Description: " +comment + "\n";
 
-                    Toast.makeText(AddActivity.this, "Vehicle Info \n:" + Colector, Toast.LENGTH_LONG).show();
+
 
                     // create model
                     VehicleModel vehicleMod;
                     try {
                         vehicleMod = new VehicleModel(-1, Plate, Model, Integer.parseInt(year),selectedType,selectedCity, comment, Integer.parseInt(amount) );
-                        Toast.makeText(AddActivity.this, vehicleMod.toString(), Toast.LENGTH_SHORT).show();
+                        DBhelper dataBaseHelper = new DBhelper(AddActivity.this);
+                        boolean b = dataBaseHelper.addOne(vehicleMod);
+                        if(b==true){
+
+
+                            AlertDialog.Builder b1=  new AlertDialog.Builder(AddActivity.this);
+                                     b1.setTitle("Added successfully");
+                                     b1.setMessage("Your " + selectedType +" is ready for rent!");
+
+                                     b1.setPositiveButton("Ok", new DialogInterface.OnClickListener(){
+                                         public void onClick(DialogInterface dialogInterface, int i) {
+
+                                             Intent intent = new Intent(getApplicationContext(), HomeAvtivity.class);
+                                             startActivity(intent);
+                                         }
+                                     });
+
+                            b1.show();
+
+
+
+
+
+
+
+                        }
                     } catch (Exception e) {
                         Toast.makeText(AddActivity.this, "Enter Valid input", Toast.LENGTH_SHORT).show();
-                        vehicleMod = new VehicleModel(-1, "ERROR", "", 0, "", "","",0);
+
+
                     }
-
-                    DBhelper dataBaseHelper = new DBhelper(AddActivity.this);
-                    boolean b = dataBaseHelper.addOne(vehicleMod);
-                    Toast.makeText(AddActivity.this, "SUCCESS= "+ b, Toast.LENGTH_SHORT).show();
-
-                  /*  Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.);
-                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
-                    byte[] img = byteArray.toByteArray();*/
-
+/*
+                    if(selectedType =="car")
+                        startActivity(new Intent(AddActivity.this,CarsActivity.class));
+                    else if (selectedType =="boat")
+                        startActivity(new Intent(AddActivity.this,BoatsActivity.class));
+                    else  startActivity(new Intent(AddActivity.this, MotorcyclesActivity.class));
+*/
 
                 }
             }
@@ -241,8 +261,6 @@ public class AddActivity extends AppCompatActivity {
         BSelectImage = findViewById(R.id.BSelectImage);
         IVPreviewImage = findViewById(R.id.IVPreviewImage);
 
-
-
         // handle the Choose Image button to trigger
         // the image chooser function
         BSelectImage.setOnClickListener(new View.OnClickListener() {
@@ -278,7 +296,7 @@ public class AddActivity extends AppCompatActivity {
             if (requestCode == SELECT_PICTURE) {
                 // Get the url of the image from data
                 Uri selectedImageUri = data.getData();
-
+                URL = String.valueOf(selectedImageUri);
                 if (null != selectedImageUri) {
                     // update the preview image in the layout
                     IVPreviewImage.setImageURI(selectedImageUri);

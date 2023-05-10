@@ -121,6 +121,12 @@ public class DBhelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+    public Cursor getdata() {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from Vehicle_Table ", null);
+        return cursor;
+    }
+
 
     public Boolean insertData(String email, String password, String name, String age) {
         SQLiteDatabase MyDB = this.getWritableDatabase();

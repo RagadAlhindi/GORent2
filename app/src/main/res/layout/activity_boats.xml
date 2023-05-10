@@ -8,6 +8,16 @@
     tools:context=".BoatsActivity">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="186dp" />
+
+
+
     <EditText
         android:id="@+id/searchtext"
         android:layout_width="343dp"

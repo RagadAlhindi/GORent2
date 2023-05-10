@@ -287,26 +287,18 @@
         android:id="@+id/relativeLayout"
         android:layout_width="405dp"
         android:layout_height="88dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="208dp"
+        app:layout_constraintEnd_toEndOf="@+id/menuphoto"
+        app:layout_constraintEnd_toStartOf="@+id/menuphoto"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/menuphoto"
         tools:context=".MainActivity"
-        tools:ignore="HardcodedText,MissingConstraints">
+        tools:ignore="HardcodedText,MissingConstraints"
+        tools:layout_editor_absoluteY="479dp">
 
         <!--Button to open the image selector-->
-        <Button
-            android:id="@+id/BSelectImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="#e7d7ef"
-            android:text="SELECT IMAGE"
-            android:textColor="#66347F"
-            android:textSize="18sp" />
 
+        <!--ImageView to preview the selected image-->
         <ImageView
             android:id="@+id/IVPreviewImage"
             android:layout_width="188dp"
@@ -457,6 +449,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/menuphoto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/BSelectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#e7d7ef"
+        android:text="SELECT IMAGE"
+        android:textColor="#66347F"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout" />
 
 
 
