@@ -228,7 +228,6 @@ public class AddActivity extends AppCompatActivity {
 
         // register the UI widgets with their appropriate IDs
         BSelectImage = findViewById(R.id.BSelectImage);
-        IVPreviewImage = findViewById(R.id.IVPreviewImage);
 
         // handle the Choose Image button to trigger
         // the image chooser function

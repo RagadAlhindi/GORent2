@@ -8,38 +8,14 @@
     tools:context=".AddActivity">
 
 
-    <EditText
-        android:id="@+id/searchtext"
-        android:layout_width="343dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="96dp"
-        android:autofillHints=""
-        android:background="@drawable/custom_search"
-        android:drawableStart="@drawable/customsearchicon"
-        android:drawablePadding="12sp"
-        android:ems="10"
-        android:hint="What you are looking for?"
-        android:inputType="textEmailAddress"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:textCursorDrawable="@null"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
     <TextView
         android:id="@+id/addtitle"
-        android:layout_width="340dp"
+        android:layout_width="wrap_content"
         android:layout_height="39dp"
         android:layout_marginTop="35dp"
         android:fontFamily="@font/opensauceonebold"
         android:lineSpacingExtra="-1sp"
-        android:text="Add New Vehicle"
+        android:text="Add Vehicle"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,214 +26,265 @@
 
 
     <TextView
-        android:id="@+id/VehicleModel"
-        android:layout_width="270dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="152dp"
-        android:fontFamily="@font/opensauceonesemibold"
-        android:text="Vehicle Model:"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/model"
-        android:layout_width="284dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/custom_inputadd"
-        android:hint="ex.Chevrolet malibu"
-        android:inputType="text"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/VehicleModel" />
-
-    <TextView
-        android:id="@+id/plateNo"
-        android:layout_width="270dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="236dp"
-        android:fontFamily="@font/opensauceonesemibold"
-        android:text="Plate Number:"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/plate"
-        android:layout_width="284dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/custom_inputadd"
-        android:hint=" Enter plate No."
-        android:inputType="text"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/plateNo" />
-
-
-    <TextView
-        android:id="@+id/Pickup"
-        android:layout_width="270dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="320dp"
-        android:fontFamily="@font/opensauceonesemibold"
-        android:text="Pick-up:"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/pickupinput"
-        android:layout_width="284dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/custom_inputadd"
-        android:hint=" Enter the Location"
-        android:inputType="text"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Pickup" />
-
-    <TextView
-        android:id="@+id/typeinput"
-        android:layout_width="270dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="400dp"
-        android:fontFamily="@font/opensauceonesemibold"
-        android:text="Type:"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/pickuploc"
-        android:layout_width="284dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/custom_inputadd"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typeinput" />
-
-    <TextView
-        android:id="@+id/Rent"
-        android:layout_width="152dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Rent Amount:"
+        android:id="@+id/addtitle2"
+        android:layout_width="325dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="132dp"
+        android:fontFamily="@font/opensauceonebold"
+        android:lineSpacingExtra="-1sp"
+        android:text="Fill in your vehicle information"
+        android:textColor="@color/black"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="243dp"
-        tools:layout_editor_absoluteY="171dp" />
-
-    <EditText
-        android:id="@+id/Amount"
-        android:layout_width="241dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/custom_inputadd"
-        android:ems="10"
-        android:hint="Enter rent amount"
-        android:inputType="number"
-        tools:layout_editor_absoluteX="230dp"
-        tools:layout_editor_absoluteY="212dp" />
-
-    <TextView
-        android:id="@+id/Description"
-        android:layout_width="270dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="516dp"
-        android:fontFamily="@font/opensauceonesemibold"
-        android:text="Description:"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck" />
 
-    <EditText
-        android:id="@+id/userDescription"
-        android:layout_width="284dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/custom_input"
-        android:hint=" Enter the description"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/Description"
-        tools:layout_editor_absoluteX="64dp" />
+    <ScrollView
+        android:id="@+id/ScrollViewID"
+        android:layout_width="390dp"
+        android:layout_height="520dp"
+        android:layout_marginTop="175dp"
+        android:animateLayoutChanges="true"
+        app:layout_constraintBaseline_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/VehicleModel"
+                android:layout_width="270dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="46dp"
+                android:fontFamily="@font/opensauceonesemibold"
+                android:text="Vehicle Model"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/model"
+                android:layout_width="310dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/VehicleModel"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custommodelicon"
+                android:drawablePadding="12sp"
+                android:ems="10"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textCursorDrawable="@null"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/plateNo"
+                android:layout_width="270dp"
+                android:layout_height="29dp"
+                android:layout_below="@+id/model"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/opensauceonesemibold"
+                android:text="Plate Number"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                app:layout_constraintTop_toBottomOf="@+id/model" />
+
+            <EditText
+                android:id="@+id/plate"
+                android:layout_width="310dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/plateNo"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/customeplateicon"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textCursorDrawable="@null"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/Pickup"
+                android:layout_width="270dp"
+                android:layout_height="29dp"
+                android:layout_below="@+id/plate"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/opensauceonesemibold"
+                android:text="Pick-up Location"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@+id/pickupinput"
+                app:layout_constraintTop_toBottomOf="@+id/plateNo" />
+
+            <EditText
+                android:id="@+id/pickupinput"
+                android:layout_width="310dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/Pickup"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/customelocationicon"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textCursorDrawable="@null"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/plate" />
 
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="9dp"
-        android:backgroundTint="#e7d7ef"
-        android:text="ADD"
-        android:textColor="#66347F"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/listicon"
-       />
+            <TextView
+                android:id="@+id/typeinput"
+                android:layout_width="270dp"
+                android:layout_height="29dp"
+                android:layout_below="@+id/Amount"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/opensauceonesemibold"
+                android:text="Vehicle Type"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@+id/pickuploc"
+                 />
 
-    <Button
-        android:id="@+id/BSelectImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="#e7d7ef"
-        android:text="SELECT IMAGE"
-        android:textColor="#66347F"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="611dp" />
+            <Spinner
+                android:id="@+id/pickuploc"
+                android:layout_width="310dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/typeinput"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/custom_input"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textCursorDrawable="@null"
+                android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pickupinput" />
 
-    <ImageView
-        android:id="@+id/IVPreviewImage"
-        android:layout_width="188dp"
-        android:layout_height="117dp"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="494dp" />
+            <TextView
+                android:id="@+id/Rent"
+                android:layout_width="270dp"
+                android:layout_height="29dp"
+                android:layout_below="@+id/pickupinput"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/opensauceonesemibold"
+                android:text="Rent Amount"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@+id/pickuploc"
+                app:layout_constraintTop_toBottomOf="@+id/Pickup" />
+
+            <EditText
+                android:id="@+id/Amount"
+                android:layout_width="310dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/Rent"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/customrenticon"
+                android:ems="10"
+                android:inputType="number"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textCursorDrawable="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pickuploc" />
+
+            <TextView
+                android:id="@+id/Description"
+                android:layout_width="270dp"
+                android:layout_height="29dp"
+                android:layout_below="@+id/pickuploc"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/opensauceonesemibold"
+                android:text="Description:"
+                android:textColor="#000000"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                 />
+
+            <EditText
+                android:id="@+id/userDescription"
+                android:layout_width="310dp"
+                android:layout_height="75dp"
+                android:layout_alignTop="@+id/Description"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/custom_input"
+                android:textCursorDrawable="@null"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Description" />
+
+            <Button
+                android:id="@+id/BSelectImage"
+                android:layout_width="150dp"
+                android:layout_height="44dp"
+                android:layout_below="@+id/userDescription"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="40dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/cameraicon"
+                android:ems="10"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="SELECT IMAGE"
+                android:textColor="@color/purple"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userDescription" />
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="284dp"
+                android:layout_height="44dp"
+                android:layout_below="@+id/BSelectImage"
+                android:layout_gravity="center"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/roundedbuton"
+                android:fontFamily="@font/opensauceonesemibold"
+                android:text="ADD VEHICLE"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.549"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
+        </RelativeLayout>
+    </ScrollView>
 
     <ImageView
         android:id="@+id/menuphoto"
-        android:layout_width="397dp"
-        android:layout_height="283dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/menusvg" />
+        app:srcCompat="@drawable/menuaddsvg" />
 
     <TextView
         android:id="@+id/homeicontext"
