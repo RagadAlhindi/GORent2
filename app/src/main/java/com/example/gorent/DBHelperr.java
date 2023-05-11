@@ -58,7 +58,7 @@ import java.util.List;
 
 
         public DBHelperr(@Nullable Context context) {
-            super(context, "GORENT.db", null, 1);
+            super(context, "NEWGORENT.db", null, 1);
 
 
         }
@@ -75,7 +75,7 @@ import java.util.List;
                     + COLUMN_VEHICLE_LOCATION + " TEXT,"
                     + COLUMN_VEHICLE_DESCRIPTION + " TEXT,"
                     + COLUMN_VEHICLE_RENT + " INTEGER,"
-                    + COLUMN_VEHICLE_PHOTO+" blob,"
+                    + COLUMN_VEHICLE_PHOTO+" BLOB,"
                     + COLUMN_USER_EMAIL + " TEXT," // Add the user email column
                     + "FOREIGN KEY(" + COLUMN_USER_EMAIL + ") REFERENCES " + TABLENAME + "(" + COL1 + ")"
                     + ")";

@@ -1,7 +1,13 @@
 package com.example.gorent;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import android.Manifest;
+
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.content.DialogInterface;
@@ -54,13 +60,46 @@ public class AddActivity extends AppCompatActivity {
     String URL ="";
 
     byte[] imgTOStore;
+    Bitmap photoBitmap;
 
 
-    DBHelperr dataBaseHelper;
+
     DBHelperr dataBaseHelperr;
+
+
+    private ActivityResultLauncher<String> requestPermissionLauncher;
+    private ActivityResultLauncher<Intent> selectImageLauncher;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+        // Request permission to read external storage
+        requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(),
+                isGranted -> {
+                    if (isGranted) {
+                        // Launch the image selection activity
+                        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        selectImageLauncher.launch(intent);
+                    } else {
+                        Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // Launch the image selection activity and retrieve the selected image
+        selectImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Uri selectedImage = result.getData().getData();
+                        try {
+                            photoBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
@@ -151,14 +190,15 @@ public class AddActivity extends AppCompatActivity {
                 String comment = UserComment.getText().toString();
                 String amount = Amount.getText().toString();
 
-                try {
+              /*  try {
+
 
                     BitmapDrawable drawable = (BitmapDrawable) IVPreviewImage.getDrawable();
                     Bitmap bitmap = drawable.getBitmap();
                     imgTOStore = getBytes(bitmap);
 
 
-                } catch (Exception e) {}
+                } catch (Exception e) {} */
 
 
                 if (Plate.isEmpty()) {
@@ -185,11 +225,13 @@ public class AddActivity extends AppCompatActivity {
                     Colector += "Year of manufacture:  " + year + "\n";
                     Colector += "Description: " + comment + "\n";
 
-
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    photoBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] photoData = stream.toByteArray();
                     // create model
                     VehicleModel vehicleMod;
                     try {
-                        vehicleMod = new VehicleModel(-1, Plate, Model, Integer.parseInt(year), selectedType, selectedCity, comment, Integer.parseInt(amount), imgTOStore);
+                        vehicleMod = new VehicleModel(-1, Plate, Model, Integer.parseInt(year), selectedType, selectedCity, comment, Integer.parseInt(amount), photoData);
                         DBHelperr dataBaseHelper = new DBHelperr(AddActivity.this);
                         boolean b = dataBaseHelperr.addOne(vehicleMod, userEmail);
 
@@ -262,14 +304,17 @@ public class AddActivity extends AppCompatActivity {
         BSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent();
-                i.setType("image/*");
-                i.setAction(Intent.ACTION_GET_CONTENT);
-
-                // pass the constant to compare it
-                // with the returned requestCode
-                startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+                // Check if the app has permission to read external storage
+                if (ContextCompat.checkSelfPermission(AddActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    // Launch the image selection activity
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    selectImageLauncher.launch(intent);
+                } else {
+                    // Request permission to read external storage
+                    requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+                }
             }
+
         });
 
     }
