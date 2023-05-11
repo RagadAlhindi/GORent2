@@ -30,10 +30,8 @@ public class AddActivity extends AppCompatActivity {
 
     Spinner sp ;
     String Colector = "";
-
-    EditText plate, model, Year, UserComment, Amount;
+    EditText plate, model,location ,UserComment, Amount;
     Button SubmitSave;
-    RadioButton car, boat, motro;
     Button BSelectImage;
 
     // One Preview Image
@@ -110,57 +108,39 @@ public class AddActivity extends AppCompatActivity {
         });
 
 
-        sp = findViewById(R.id.SpCountry);
+        sp = findViewById(R.id.pickuploc);
         plate = findViewById(R.id.plate);
         model = findViewById(R.id.model);
-        Year = findViewById(R.id.year);
         Amount = findViewById(R.id.Amount);
+        location=findViewById(R.id.pickupinput);
         UserComment = findViewById(R.id.userDescription);
-        car = findViewById(R.id.car);
-        boat = findViewById(R.id.boat);
-        motro = findViewById(R.id.motorcycle);
         SubmitSave = findViewById(R.id.btnSubmit);
 
-
-
         dataBaseHelper = new DBHelperr(AddActivity.this);
-
-
-
-
-
 
         SubmitSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (((RadioButton)car).isChecked()) {
-                    selectedType = "car";
-                } else if (((RadioButton)boat).isChecked()) {
-                    selectedType = "boat";
-                } else if (((RadioButton)motro).isChecked()) {
-                    selectedType = "motrocycle";
-                }
                 String Plate = plate.getText().toString();
                 String Model = model.getText().toString();
-                String year = Year.getText().toString();
                 String comment = UserComment.getText().toString();
                 String amount = Amount.getText().toString();
+                String Location = location.getText().toString();
+
 
                 if (Plate.isEmpty()) {
                     Toast.makeText(AddActivity.this, "Please fill the plate number field", Toast.LENGTH_SHORT).show();
                 } else if (Model.isEmpty()) {
                     Toast.makeText(AddActivity.this, "Please fill the model field", Toast.LENGTH_SHORT).show();
-                } else if (year.isEmpty()) {
-                    Toast.makeText(AddActivity.this, "Please fill the year of manufacture field", Toast.LENGTH_SHORT).show();
                 } else if (comment.isEmpty()) {
                     Toast.makeText(AddActivity.this, "Please fill the description field", Toast.LENGTH_SHORT).show();
                 }
                 else if (amount.isEmpty()) {
                     Toast.makeText(AddActivity.this, "Please fill the rent amount field", Toast.LENGTH_SHORT).show();
                 }
-                else if (selectedCity.equals("")) {
-                    Toast.makeText(AddActivity.this, "Please choose the location in the city field", Toast.LENGTH_SHORT).show();
+                else if (Location.isEmpty()) {
+                    Toast.makeText(AddActivity.this, "Please fill the pick-up location field", Toast.LENGTH_SHORT).show();
                 }
                 else if (selectedType.equals("")) {
                     Toast.makeText(AddActivity.this, "Please choose the vehicle type", Toast.LENGTH_SHORT).show();
@@ -170,19 +150,15 @@ public class AddActivity extends AppCompatActivity {
 
                     Colector += "Plate: " + Plate + "\n";
                     Colector += "Model: " + Model + "\n";
-                    Colector += "Year of manufacture:  "+ year + "\n";
                     Colector += "Description: " +comment + "\n";
-
-
 
                     // create model
                     VehicleModel vehicleMod;
                     try {
-                        vehicleMod = new VehicleModel(-1, Plate, Model, Integer.parseInt(year),selectedType,selectedCity, comment, Integer.parseInt(amount) );
+                        vehicleMod = new VehicleModel(-1, Plate, Model, selectedType, Location, comment, Integer.parseInt(amount) );
                         DBHelperr dataBaseHelper = new DBHelperr(AddActivity.this);
                         boolean b = dataBaseHelper.addOne(vehicleMod, userEmail);
                         if(b==true){
-
 
                             AlertDialog.Builder b1=  new AlertDialog.Builder(AddActivity.this);
                                      b1.setTitle("Added successfully");
@@ -210,13 +186,6 @@ public class AddActivity extends AppCompatActivity {
 
 
                     }
-/*
-                    if(selectedType =="car")
-                        startActivity(new Intent(AddActivity.this,CarsActivity.class));
-                    else if (selectedType =="boat")
-                        startActivity(new Intent(AddActivity.this,BoatsActivity.class));
-                    else  startActivity(new Intent(AddActivity.this, MotorcyclesActivity.class));
-*/
 
                 }
             }
@@ -224,25 +193,15 @@ public class AddActivity extends AppCompatActivity {
 
         });
 
-        List<String> categoryCountry = new ArrayList<>();
-        categoryCountry.add("Select City");
-        categoryCountry.add("Abha");
-        categoryCountry.add("AlBaha");
-        categoryCountry.add("Dammam");
-        categoryCountry.add("Hail");
-        categoryCountry.add("Jazan");
-        categoryCountry.add("Jeddah");
-        categoryCountry.add("Madina");
-        categoryCountry.add("Mekkah");
-        categoryCountry.add("Riyadh");
-        categoryCountry.add("Taif");
-
-
-
+        List<String> categoryType = new ArrayList<>();
+        categoryType.add("Select Type");
+        categoryType.add("Car");
+        categoryType.add("Boat");
+        categoryType.add("Motorcycle");
 
 
         ArrayAdapter<String> arrayAdapter;
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categoryCountry);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categoryType);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(arrayAdapter);
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -253,8 +212,8 @@ public class AddActivity extends AppCompatActivity {
 
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
-                    Colector +="City: "+ item + "\n" ;
-                    selectedCity = item;
+                    Colector +="selectedType: "+ item + "\n" ;
+                    selectedType = item;
                     Toast.makeText(AddActivity.this, "Selected city: " + item, Toast.LENGTH_LONG).show();
                 }
             }

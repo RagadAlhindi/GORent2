@@ -21,19 +21,11 @@ import java.util.List;
         public static final String VEHICLE_TABLE = "Vehicle_Table";
         public static final String COLUMN_VEHICLE_PLATE = "VEHICLE_PLATE";
         public static final String COLUMN_VEHICLE_MODEL = "VEHICLE_MODEL";
-
-        public static final String COLUMN_VEHICLE_YEAR = "VEHICLE_YEAR";
-
         public static final String COLUMN_VEHICLE_TYPE = "VEHICLE_TYPE";
-
         public static final String COLUMN_VEHICLE_LOCATION= "VEHICLE_LOCATION";
-
         public static final String COLUMN_VEHICLE_DESCRIPTION= "VEHICLE_DESCRIPTION";
-
-
         public static final String COLUMN_VEHICLE_RENT= "VEHICLE_RENT";
         public static final String COLUMN_ID = "ID";
-
         public static final String COLUMN_USER_EMAIL = "user_email";
 
 
@@ -55,7 +47,6 @@ import java.util.List;
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_VEHICLE_PLATE + " TEXT,"
                     + COLUMN_VEHICLE_MODEL + " TEXT,"
-                    + COLUMN_VEHICLE_YEAR + " INTEGER,"
                     + COLUMN_VEHICLE_TYPE + " TEXT,"
                     + COLUMN_VEHICLE_LOCATION + " TEXT,"
                     + COLUMN_VEHICLE_DESCRIPTION + " TEXT,"
@@ -81,9 +72,8 @@ import java.util.List;
 
             cv.put(COLUMN_VEHICLE_PLATE, VM.getPlateNo());
             cv.put(COLUMN_VEHICLE_MODEL, VM.getModel());
-            cv.put(COLUMN_VEHICLE_YEAR, VM.getYear());
             cv.put(COLUMN_VEHICLE_TYPE, VM.getType());
-            cv.put(COLUMN_VEHICLE_LOCATION, VM.getCity());
+            cv.put(COLUMN_VEHICLE_LOCATION, VM.getLocation());
             cv.put(COLUMN_VEHICLE_DESCRIPTION, VM.getDescription());
             cv.put(COLUMN_VEHICLE_RENT, VM.getRent());
             cv.put(COLUMN_USER_EMAIL, userEmail); // Insert the user email into the user_email column
@@ -128,7 +118,7 @@ import java.util.List;
                     String VDescription = cursor.getString(1);
                     int VRent = cursor.getInt(2);
 
-                    VehicleModel newVehicle = new VehicleModel(SID, VPlate, VModel, VYear, VType, VLoc, VDescription,VRent);
+                    VehicleModel newVehicle = new VehicleModel(SID, VPlate, VModel,  VType, VLoc, VDescription,VRent);
                     returnList.add(newVehicle);
                 }while (cursor.moveToNext());
             } else{
