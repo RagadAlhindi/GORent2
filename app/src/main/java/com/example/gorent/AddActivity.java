@@ -32,6 +32,7 @@ public class AddActivity extends AppCompatActivity {
     String Colector = "";
     EditText plate, model,location ,UserComment, Amount;
     Button SubmitSave;
+    RadioButton car, boat, motro;
     Button BSelectImage;
 
     // One Preview Image
@@ -135,8 +136,7 @@ public class AddActivity extends AppCompatActivity {
                     Toast.makeText(AddActivity.this, "Please fill the model field", Toast.LENGTH_SHORT).show();
                 } else if (comment.isEmpty()) {
                     Toast.makeText(AddActivity.this, "Please fill the description field", Toast.LENGTH_SHORT).show();
-                }
-                else if (amount.isEmpty()) {
+                } else if (amount.isEmpty()) {
                     Toast.makeText(AddActivity.this, "Please fill the rent amount field", Toast.LENGTH_SHORT).show();
                 }
                 else if (Location.isEmpty()) {
@@ -186,6 +186,13 @@ public class AddActivity extends AppCompatActivity {
 
 
                     }
+/*
+                    if(selectedType =="car")
+                        startActivity(new Intent(AddActivity.this,CarsActivity.class));
+                    else if (selectedType =="boat")
+                        startActivity(new Intent(AddActivity.this,BoatsActivity.class));
+                    else  startActivity(new Intent(AddActivity.this, MotorcyclesActivity.class));
+*/
 
                 }
             }
