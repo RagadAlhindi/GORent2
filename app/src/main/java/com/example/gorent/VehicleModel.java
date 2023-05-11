@@ -1,5 +1,7 @@
 package com.example.gorent;
 
+import android.graphics.Bitmap;
+
 public class VehicleModel {
 
     private int id;
@@ -11,8 +13,10 @@ public class VehicleModel {
     private String description;
     private int rent;
 
+    byte[] img;
 
-    public VehicleModel(int id, String plateNo, String model, int year, String type, String city, String description, int rent) {
+
+    public VehicleModel(int id, String plateNo, String model, int year, String type, String city, String description, int rent , byte[] img) {
         this.id = id;
         this.plateNo = plateNo;
         this.model = model;
@@ -21,6 +25,7 @@ public class VehicleModel {
         this.city = city;
         this.description = description;
         this.rent = rent;
+        this.img=img;
     }
 
     @Override
@@ -74,6 +79,11 @@ public class VehicleModel {
         this.id = id;
     }
 
+    public byte[] getImg() {
+        return img;
+    }
 
-
+    public void setImg(byte[] img) {
+        this.img = img;
+    }
 }
