@@ -147,6 +147,8 @@ public class OffersActivity extends AppCompatActivity {
                             type.remove(pos);
                             db.DeleteOne(id1);
                             adapter.notifyDataSetChanged();
+
+
                         }
                     });
                     builder2.setNegativeButton("No",null);

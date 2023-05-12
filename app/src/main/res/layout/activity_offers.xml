@@ -33,6 +33,22 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        app:layout_constraintBaseline_toBottomOf="parent"
+        tools:layout_editor_absoluteY="140dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="185dp" />
+    </ScrollView>
 
     <TextView
         android:id="@+id/offerstitle"
@@ -174,14 +190,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="185dp" />
+
 
 
 
