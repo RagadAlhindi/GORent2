@@ -2,12 +2,17 @@ package com.example.gorent;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +26,23 @@ import java.util.List;
         public static final String VEHICLE_TABLE = "Vehicle_Table";
         public static final String COLUMN_VEHICLE_PLATE = "VEHICLE_PLATE";
         public static final String COLUMN_VEHICLE_MODEL = "VEHICLE_MODEL";
+
         public static final String COLUMN_VEHICLE_TYPE = "VEHICLE_TYPE";
+
         public static final String COLUMN_VEHICLE_LOCATION= "VEHICLE_LOCATION";
+
         public static final String COLUMN_VEHICLE_DESCRIPTION= "VEHICLE_DESCRIPTION";
+
+
         public static final String COLUMN_VEHICLE_RENT= "VEHICLE_RENT";
         public static final String COLUMN_ID = "ID";
 
         public static final String COLUMN_VEHICLE_PHOTO = "img";
+
         public static final String COLUMN_USER_EMAIL = "user_email";
+
+
+
 
 
         // for users table
@@ -37,9 +51,14 @@ import java.util.List;
         public static final String COL2 = "password";
         public static final String COL3 = "name";
         public static final String COL4 = "age";
+        Context context;
+
+
 
         public DBHelperr(@Nullable Context context) {
-            super(context, "GORENTDB.db", null, 1);
+            super(context, "NEWGORENT.db", null, 1);
+
+
         }
 
         // when creating the database
@@ -53,10 +72,13 @@ import java.util.List;
                     + COLUMN_VEHICLE_LOCATION + " TEXT,"
                     + COLUMN_VEHICLE_DESCRIPTION + " TEXT,"
                     + COLUMN_VEHICLE_RENT + " INTEGER,"
+                    + COLUMN_VEHICLE_PHOTO+" BLOB,"
                     + COLUMN_USER_EMAIL + " TEXT," // Add the user email column
                     + "FOREIGN KEY(" + COLUMN_USER_EMAIL + ") REFERENCES " + TABLENAME + "(" + COL1 + ")"
                     + ")";
             sqLiteDatabase.execSQL(createTableStatement);
+
+
             sqLiteDatabase.execSQL("CREATE TABLE " + TABLENAME + " (" + COL1 + " TEXT PRIMARY KEY, " + COL2 + " TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT)");
 
 
@@ -78,15 +100,20 @@ import java.util.List;
             cv.put(COLUMN_VEHICLE_LOCATION, VM.getLocation());
             cv.put(COLUMN_VEHICLE_DESCRIPTION, VM.getDescription());
             cv.put(COLUMN_VEHICLE_RENT, VM.getRent());
+            cv.put(COLUMN_VEHICLE_PHOTO,VM.getImg());
             cv.put(COLUMN_USER_EMAIL, userEmail); // Insert the user email into the user_email column
             long insert = db.insert(VEHICLE_TABLE, null, cv);
             if(insert == -1){
                 return false;
             }
             else {
+
                 return true;
             }
         }
+
+
+
 
         public boolean DeleteOne(VehicleModel VM){
             SQLiteDatabase db = this.getWritableDatabase();
@@ -114,13 +141,13 @@ import java.util.List;
                     int SID = cursor.getInt(0); // vehicle ID
                     String VPlate = cursor.getString(1);
                     String VModel = cursor.getString(1);
-                    int VYear = cursor.getInt(2);
                     String VType = cursor.getString(1);
                     String VLoc = cursor.getString(1);
                     String VDescription = cursor.getString(1);
                     int VRent = cursor.getInt(2);
+                    byte[] photoData=cursor.getBlob(8);
 
-                    VehicleModel newVehicle = new VehicleModel(SID, VPlate, VModel, VType, VLoc, VDescription,VRent);
+                    VehicleModel newVehicle = new VehicleModel(SID, VPlate, VModel, VType, VLoc, VDescription,VRent,photoData);
                     returnList.add(newVehicle);
                 }while (cursor.moveToNext());
             } else{

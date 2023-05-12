@@ -112,7 +112,6 @@ public class CarsActivity extends AppCompatActivity {
 
     }
 
-
     private void displaydata() {
         Cursor cursor = DB.getdata();
         if (cursor.getCount() == 0) {

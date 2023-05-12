@@ -1,12 +1,20 @@
 package com.example.gorent;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,9 +26,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
+import android.Manifest;
 public class AddActivity extends AppCompatActivity {
 
     ImageView homeicon;
@@ -32,7 +43,7 @@ public class AddActivity extends AppCompatActivity {
     String Colector = "";
     EditText plate, model,location ,UserComment, Amount;
     Button SubmitSave;
-    RadioButton car, boat, motro;
+
     Button BSelectImage;
 
     // One Preview Image
@@ -45,8 +56,10 @@ public class AddActivity extends AppCompatActivity {
     String selectedCity ="";
 
     String URL ="";
+    Bitmap photoBitmap;
 
-
+    private ActivityResultLauncher<String> requestPermissionLauncher;
+    private ActivityResultLauncher<Intent> selectImageLauncher;
     DBHelperr dataBaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +70,30 @@ public class AddActivity extends AppCompatActivity {
 
 
 
+        // Request permission to read external storage
+        requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(),
+                isGranted -> {
+                    if (isGranted) {
+                        // Launch the image selection activity
+                        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        selectImageLauncher.launch(i);
+                    } else {
+                        Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // Launch the image selection activity and retrieve the selected image
+        selectImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Uri selectedImage = result.getData().getData();
+                        try {
+                            photoBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
 
         homeicon= (ImageView) findViewById(R.id.homeicon);
@@ -152,10 +189,13 @@ public class AddActivity extends AppCompatActivity {
                     Colector += "Model: " + Model + "\n";
                     Colector += "Description: " +comment + "\n";
 
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    photoBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] photoData = stream.toByteArray();
                     // create model
                     VehicleModel vehicleMod;
                     try {
-                        vehicleMod = new VehicleModel(-1, Plate, Model, selectedType, Location, comment, Integer.parseInt(amount) );
+                        vehicleMod = new VehicleModel(-1, Plate, Model, selectedType, Location, comment, Integer.parseInt(amount),photoData );
                         DBHelperr dataBaseHelper = new DBHelperr(AddActivity.this);
                         boolean b = dataBaseHelper.addOne(vehicleMod, userEmail);
                         if(b==true){
@@ -186,13 +226,7 @@ public class AddActivity extends AppCompatActivity {
 
 
                     }
-/*
-                    if(selectedType =="car")
-                        startActivity(new Intent(AddActivity.this,CarsActivity.class));
-                    else if (selectedType =="boat")
-                        startActivity(new Intent(AddActivity.this,BoatsActivity.class));
-                    else  startActivity(new Intent(AddActivity.this, MotorcyclesActivity.class));
-*/
+
 
                 }
             }
@@ -219,9 +253,9 @@ public class AddActivity extends AppCompatActivity {
 
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
-                    Colector +="selectedType: "+ item + "\n" ;
+                    Colector +="selected Type: "+ item + "\n" ;
                     selectedType = item;
-                    Toast.makeText(AddActivity.this, "Selected city: " + item, Toast.LENGTH_LONG).show();
+                 //   Toast.makeText(AddActivity.this, "Selected Type: " + item, Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -241,13 +275,22 @@ public class AddActivity extends AppCompatActivity {
         BSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageChooser();
+                // Check if the app has permission to read external storage
+                if (ContextCompat.checkSelfPermission(AddActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    // Launch the image selection activity
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    selectImageLauncher.launch(intent);
+                } else {
+                    // Request permission to read external storage
+                    requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+                }
             }
-        });
+            });
 
-    }
 
-    void imageChooser() {
+}
+
+  /*  void imageChooser() {
 
         // create an instance of the
         // intent of the type image
@@ -258,25 +301,28 @@ public class AddActivity extends AppCompatActivity {
         // pass the constant to compare it
         // with the returned requestCode
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-    }
+    }*/
+
     // this function is triggered when user
     // selects the image from the imageChooser
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-
-            // compare the resultCode with the
-            // SELECT_PICTURE constant
-            if (requestCode == SELECT_PICTURE) {
-                // Get the url of the image from data
-                Uri selectedImageUri = data.getData();
-                URL = String.valueOf(selectedImageUri);
-                if (null != selectedImageUri) {
-                    // update the preview image in the layout
-                    IVPreviewImage.setImageURI(selectedImageUri);
-                }
+        if(resultCode==RESULT_OK && data != null){
+            Uri uri=data.getData();
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                Bitmap decodeStream= BitmapFactory.decodeStream(inputStream);
+              //  IVPreviewImage.setImageBitmap(decodeStream);
+            } catch (Exception e) {
+                Log.e("ex",e.getMessage());
             }
         }
+    }
+
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        return stream.toByteArray();
     }
 }

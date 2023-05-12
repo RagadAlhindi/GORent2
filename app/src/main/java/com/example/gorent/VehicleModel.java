@@ -14,7 +14,7 @@ public class VehicleModel {
 
     byte[] img;
 
-    public VehicleModel(int id, String plateNo, String model, String type, String location ,String description, int rent) {
+    public VehicleModel(int id, String plateNo, String model, String type, String location ,String description, int rent,byte[] img) {
         this.id = id;
         this.plateNo = plateNo;
         this.model = model;
