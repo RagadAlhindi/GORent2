@@ -93,7 +93,6 @@ import java.util.List;
         public boolean addOne(VehicleModel VM, String userEmail){
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues cv = new ContentValues();
-
             cv.put(COLUMN_VEHICLE_PLATE, VM.getPlateNo());
             cv.put(COLUMN_VEHICLE_MODEL, VM.getModel());
             cv.put(COLUMN_VEHICLE_TYPE, VM.getType());
@@ -118,6 +117,19 @@ import java.util.List;
         public boolean DeleteOne(VehicleModel VM){
             SQLiteDatabase db = this.getWritableDatabase();
             String queryString= "Delete From " + VEHICLE_TABLE + " WHERE " + COLUMN_ID + " = " + VM.getId() ;
+            Cursor cursor = db.rawQuery(queryString, null);
+            if(cursor.moveToFirst()){
+                return true;
+            } else{
+                // nothing happens. no one is added.
+                return false;
+            }
+            //close
+        }
+
+        public boolean DeleteOne(int id){
+            SQLiteDatabase db = this.getWritableDatabase();
+            String queryString= "Delete From " + VEHICLE_TABLE + " WHERE " + COLUMN_ID + " = " + id ;
             Cursor cursor = db.rawQuery(queryString, null);
             if(cursor.moveToFirst()){
                 return true;

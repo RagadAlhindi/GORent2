@@ -21,11 +21,16 @@ public class RentedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rented);
 
+        Intent intent = getIntent();
+        String userEmail = intent.getStringExtra("userEmail");
+
         homeicon= (ImageView) findViewById(R.id.homeicon);
         homeicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RentedActivity.this, HomeAvtivity.class));
+                Intent i1 = new Intent(RentedActivity.this, HomeAvtivity.class);
+                i1.putExtra("userEmail",userEmail);
+                startActivity(i1);
             }
         });
 
@@ -33,16 +38,18 @@ public class RentedActivity extends AppCompatActivity {
         offersicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RentedActivity.this, OffersActivity.class));
-            }
+                Intent i2 = new Intent(RentedActivity.this, OffersActivity.class);
+                i2.putExtra("userEmail",userEmail);
+                startActivity(i2);            }
         });
 
         addicon= (ImageView) findViewById(R.id.addicon);
         addicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RentedActivity.this, AddActivity.class));
-            }
+                Intent i3= new Intent(RentedActivity.this, AddActivity.class);
+                i3.putExtra("userEmail",userEmail);
+                startActivity(i3);             }
         });
 
 

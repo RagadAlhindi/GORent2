@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class HomeAvtivity extends AppCompatActivity {
 
@@ -26,13 +27,20 @@ public class HomeAvtivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Intent intent = getIntent();
+        String userEmail = intent.getStringExtra("userEmail");
+
+
 
 
         carsbutton=(ImageButton)findViewById(R.id.carsbutton);
         carsbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, CarsActivity.class));
+                Intent i6 = new Intent(HomeAvtivity.this, CarsActivity.class);
+                i6.putExtra("userEmail",userEmail);
+                startActivity(i6);
+
             }
         });
 
@@ -40,7 +48,9 @@ public class HomeAvtivity extends AppCompatActivity {
         boatsbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, BoatsActivity.class));
+                Intent i5 = new Intent(HomeAvtivity.this, BoatsActivity.class);
+                i5.putExtra("userEmail",userEmail);
+                startActivity(i5);
             }
         });
 
@@ -48,7 +58,9 @@ public class HomeAvtivity extends AppCompatActivity {
         motorcyclesbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, MotorcyclesActivity.class));
+                Intent i4 = new Intent(HomeAvtivity.this, MotorcyclesActivity.class);
+                i4.putExtra("userEmail",userEmail);
+                startActivity(i4);
             }
         });
 
@@ -56,7 +68,11 @@ public class HomeAvtivity extends AppCompatActivity {
         offersicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, OffersActivity.class));
+                Intent i1 = new Intent(HomeAvtivity.this, OffersActivity.class);
+                i1.putExtra("userEmail",userEmail);
+                startActivity(i1);
+
+
             }
         });
 
@@ -64,7 +80,9 @@ public class HomeAvtivity extends AppCompatActivity {
         addicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, AddActivity.class));
+                Intent i2 = new Intent(HomeAvtivity.this, AddActivity.class);
+                i2.putExtra("userEmail",userEmail);
+                startActivity(i2);
             }
         });
 
@@ -72,7 +90,9 @@ public class HomeAvtivity extends AppCompatActivity {
         basketicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeAvtivity.this, RentedActivity.class));
+                Intent i3 = new Intent(HomeAvtivity.this, RentedActivity.class);
+                i3.putExtra("userEmail",userEmail);
+                startActivity(i3);
             }
         });
 

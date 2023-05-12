@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,14 +16,25 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyviewHolder> {
 
     private Context context;
-    private ArrayList model , type , rent;
+    private ArrayList model  , rent , photo;
 
-    public MyAdapter(Context context, ArrayList model, ArrayList type, ArrayList rent) {
+    ArrayList <VehicleModel> vehicle;
+
+    public MyAdapter(Context context, ArrayList model, ArrayList rent ) {
         this.context = context;
         this.model = model;
-        this.type = type;
+
         this.rent = rent;
+
     }
+
+    public MyAdapter(Context context, ArrayList vehicle) {
+        this.context = context;
+        this.vehicle = vehicle;
+
+    }
+
+
 
     @NonNull
     @Override
@@ -32,9 +45,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyviewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyviewHolder holder, int position) {
+
         holder.model.setText(String.valueOf(model.get(position)));
-        holder.type.setText(String.valueOf(type.get(position)));
         holder.rent.setText(String.valueOf(rent.get(position)));
+
 
 
 
@@ -47,12 +61,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyviewHolder> {
     }
 
     public class MyviewHolder extends RecyclerView.ViewHolder {
-        TextView model , type , rent;
+        TextView model , rent;
+        ImageView photo;
+
         public MyviewHolder(@NonNull View itemView) {
             super(itemView);
             model = itemView.findViewById(R.id.textModel);
-            type = itemView.findViewById(R.id.textType);
             rent = itemView.findViewById(R.id.textPrice);
+            photo = itemView.findViewById(R.id.Vimage);
+
         }
     }
 }

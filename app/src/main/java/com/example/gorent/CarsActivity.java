@@ -30,6 +30,8 @@ public class CarsActivity extends AppCompatActivity {
 
     ArrayList<String> model, type, rent;
 
+    ArrayList<VehicleModel> vehicles;
+
     DBHelperr DB;
 
     MyAdapter adapter;
@@ -40,11 +42,17 @@ public class CarsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cars);
 
 
+        Intent intent = getIntent();
+        String userEmail = intent.getStringExtra("userEmail");
+
+
         homeicon = (ImageView) findViewById(R.id.homeicon);
         homeicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CarsActivity.this, HomeAvtivity.class));
+                Intent i1 = new Intent(CarsActivity.this, HomeAvtivity.class);
+                i1.putExtra("userEmail",userEmail);
+                startActivity(i1);
             }
         });
 
@@ -52,7 +60,9 @@ public class CarsActivity extends AppCompatActivity {
         offersicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CarsActivity.this, OffersActivity.class));
+                Intent i2 = new Intent(CarsActivity.this, OffersActivity.class);
+                i2.putExtra("userEmail",userEmail);
+                startActivity(i2);
             }
         });
 
@@ -60,7 +70,9 @@ public class CarsActivity extends AppCompatActivity {
         addicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CarsActivity.this, AddActivity.class));
+                Intent i3 = new Intent(CarsActivity.this, AddActivity.class);
+                i3.putExtra("userEmail",userEmail);
+                startActivity(i3);
             }
         });
 
@@ -68,7 +80,9 @@ public class CarsActivity extends AppCompatActivity {
         basketicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CarsActivity.this, RentedActivity.class));
+                Intent i4 = new Intent(CarsActivity.this, RentedActivity.class);
+                i4.putExtra("userEmail",userEmail);
+                startActivity(i4);
             }
         });
 
@@ -101,11 +115,11 @@ public class CarsActivity extends AppCompatActivity {
         model = new ArrayList<>();
         type = new ArrayList<>();
         rent = new ArrayList<>();
+        //vehicles=DB.getEveryone();
         recyclerView = findViewById(R.id.recyclerview);
-        adapter = new MyAdapter(this, model, type, rent);
+        adapter = new MyAdapter(this, model, rent);
         recyclerView.setAdapter(adapter);
         GridLayoutManager gridLayoutManager= new GridLayoutManager(this,2,LinearLayoutManager.VERTICAL,false);
-
         recyclerView.setLayoutManager(gridLayoutManager);
         displaydata();
 
@@ -119,10 +133,9 @@ public class CarsActivity extends AppCompatActivity {
             return;
         } else {
             while (cursor.moveToNext()) {
-                if (cursor.getString(4).equals("car")) {
+                if (cursor.getString(3).equals("Car")) {
                     model.add(cursor.getString(2).concat(" "));
-                    type.add(cursor.getString(3));
-                    rent.add(cursor.getString(7).concat("SR"));
+                    rent.add(cursor.getString(6).concat("SR"));
 
                 }
 

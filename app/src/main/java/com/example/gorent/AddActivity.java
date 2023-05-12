@@ -57,16 +57,13 @@ public class AddActivity extends AppCompatActivity {
 
     String URL ="";
     Bitmap photoBitmap;
+    String userEmail;
 
     private ActivityResultLauncher<String> requestPermissionLauncher;
     private ActivityResultLauncher<Intent> selectImageLauncher;
     DBHelperr dataBaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
-        Intent intent = getIntent();
-        String userEmail = intent.getStringExtra("userEmail");
 
 
 
@@ -96,11 +93,27 @@ public class AddActivity extends AppCompatActivity {
                 });
 
 
-        homeicon= (ImageView) findViewById(R.id.homeicon);
-        homeicon.setOnClickListener(new View.OnClickListener(){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add);
+        try{
+            Intent intent = getIntent();
+             userEmail = intent.getStringExtra("userEmail");
+
+        }catch(Exception e ){
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+
+        homeicon = (ImageView) findViewById(R.id.homeicon);
+        homeicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddActivity.this, HomeAvtivity.class));
+                Intent i1 = new Intent(AddActivity.this, HomeAvtivity.class);
+                i1.putExtra("userEmail",userEmail);
+                startActivity(i1);
             }
         });
 
@@ -108,15 +121,20 @@ public class AddActivity extends AppCompatActivity {
         offersicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddActivity.this, OffersActivity.class));
+                Intent i2 = new Intent(AddActivity.this, OffersActivity.class);
+                i2.putExtra("userEmail",userEmail);
+                startActivity(i2);
             }
         });
 
-        basketicon= (ImageView) findViewById(R.id.basketicon);
-        basketicon.setOnClickListener(new View.OnClickListener(){
+
+        basketicon = (ImageView) findViewById(R.id.basketicon);
+        basketicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddActivity.this, RentedActivity.class));
+                Intent i3 = new Intent(AddActivity.this, RentedActivity.class);
+                i3.putExtra("userEmail",userEmail);
+                startActivity(i3);
             }
         });
 
@@ -154,7 +172,7 @@ public class AddActivity extends AppCompatActivity {
         UserComment = findViewById(R.id.userDescription);
         SubmitSave = findViewById(R.id.btnSubmit);
 
-        dataBaseHelper = new DBHelperr(AddActivity.this);
+       // dataBaseHelper = new DBHelperr(AddActivity.this);
 
         SubmitSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,9 +199,10 @@ public class AddActivity extends AppCompatActivity {
                 }
                 else if (selectedType.equals("")) {
                     Toast.makeText(AddActivity.this, "Please choose the vehicle type", Toast.LENGTH_SHORT).show();
-                }
-
-                else {
+                }else if (IVPreviewImage.getDrawable()==null){
+                    Toast.makeText(AddActivity.this, "Please select photo", Toast.LENGTH_SHORT).show();
+                    }
+                 else {
 
                     Colector += "Plate: " + Plate + "\n";
                     Colector += "Model: " + Model + "\n";
@@ -207,11 +226,12 @@ public class AddActivity extends AppCompatActivity {
                                      b1.setPositiveButton("Ok", new DialogInterface.OnClickListener(){
                                          public void onClick(DialogInterface dialogInterface, int i) {
 
-                                             Intent intent = new Intent(getApplicationContext(), HomeAvtivity.class);
-                                             startActivity(intent);
-                                         }
-                                     });
 
+                                             Intent i6 = new Intent(getApplicationContext(), HomeAvtivity.class);
+                                    i6.putExtra("userEmail",userEmail);
+                                    startActivity(i6);
+                                }
+                            });
                             b1.show();
 
 
@@ -222,7 +242,7 @@ public class AddActivity extends AppCompatActivity {
 
                         }
                     } catch (Exception e) {
-                        Toast.makeText(AddActivity.this, "Enter Valid input", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddActivity.this, "Enter Valid input"+e.getMessage(), Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -233,6 +253,8 @@ public class AddActivity extends AppCompatActivity {
 
 
         });
+
+
 
         List<String> categoryType = new ArrayList<>();
         categoryType.add("Select Type");
@@ -248,7 +270,7 @@ public class AddActivity extends AppCompatActivity {
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
-                if (parent.getItemAtPosition(position).equals("Select City")) {
+                if (parent.getItemAtPosition(position).equals("Select Type")) {
                     //Do Nothing
 
                 } else {
@@ -265,16 +287,9 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
-
-
-        // register the UI widgets with their appropriate IDs
-        BSelectImage = findViewById(R.id.BSelectImage);
-
-        // handle the Choose Image button to trigger
-        // the image chooser function
         BSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 // Check if the app has permission to read external storage
                 if (ContextCompat.checkSelfPermission(AddActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     // Launch the image selection activity
@@ -285,26 +300,11 @@ public class AddActivity extends AppCompatActivity {
                     requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
                 }
             }
-            });
 
+        });
 
-}
+    }
 
-  /*  void imageChooser() {
-
-        // create an instance of the
-        // intent of the type image
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
-
-        // pass the constant to compare it
-        // with the returned requestCode
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-    }*/
-
-    // this function is triggered when user
-    // selects the image from the imageChooser
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -312,8 +312,8 @@ public class AddActivity extends AppCompatActivity {
             Uri uri=data.getData();
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
-                Bitmap decodeStream= BitmapFactory.decodeStream(inputStream);
-              //  IVPreviewImage.setImageBitmap(decodeStream);
+                Bitmap decodeStream=BitmapFactory.decodeStream(inputStream);
+                IVPreviewImage.setImageBitmap(decodeStream);
             } catch (Exception e) {
                 Log.e("ex",e.getMessage());
             }

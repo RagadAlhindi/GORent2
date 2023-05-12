@@ -36,11 +36,16 @@ public class MotorcyclesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_motorcycles);
 
+        Intent intent = getIntent();
+        String userEmail = intent.getStringExtra("userEmail");
+
         homeicon= (ImageView) findViewById(R.id.homeicon);
         homeicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MotorcyclesActivity.this, HomeAvtivity.class));
+                Intent i1 = new Intent(MotorcyclesActivity.this, HomeAvtivity.class);
+                i1.putExtra("userEmail",userEmail);
+                startActivity(i1);
             }
         });
 
@@ -48,7 +53,9 @@ public class MotorcyclesActivity extends AppCompatActivity {
         offersicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MotorcyclesActivity.this, OffersActivity.class));
+                Intent i2 = new Intent(MotorcyclesActivity.this, OffersActivity.class);
+                i2.putExtra("userEmail",userEmail);
+                startActivity(i2);
             }
         });
 
@@ -56,16 +63,18 @@ public class MotorcyclesActivity extends AppCompatActivity {
         addicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MotorcyclesActivity.this, AddActivity.class));
-            }
+                Intent i3 = new Intent(MotorcyclesActivity.this, AddActivity.class);
+                i3.putExtra("userEmail",userEmail);
+                startActivity(i3);            }
         });
 
         basketicon= (ImageView) findViewById(R.id.basketicon);
         basketicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MotorcyclesActivity.this, RentedActivity.class));
-            }
+                Intent i4 = new Intent(MotorcyclesActivity.this, RentedActivity.class);
+                i4.putExtra("userEmail",userEmail);
+                startActivity(i4);            }
         });
 
 
@@ -99,7 +108,7 @@ public class MotorcyclesActivity extends AppCompatActivity {
         type=new ArrayList<>();
         rent=new ArrayList<>();
         recyclerView=findViewById(R.id.recyclerview);
-        adapter=new MyAdapter(this,model,type,rent);
+        adapter=new MyAdapter(this,model,rent);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         displaydata();
@@ -112,15 +121,14 @@ public class MotorcyclesActivity extends AppCompatActivity {
     private void displaydata() {
         Cursor cursor = DB.getdata();
         if(cursor.getCount()==0){
-            Toast.makeText(this, "No cars for rent", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No MotorCycle for rent", Toast.LENGTH_SHORT).show();
             return;
         }
         else{
             while(cursor.moveToNext()){
-                if (cursor.getString(4).equals("motrocycle")) {
+                if (cursor.getString(3).equals("Motorcycle")) {
                     model.add(cursor.getString(2));
-                    type.add(cursor.getString(3));
-                    rent.add(cursor.getString(7));
+                    rent.add(cursor.getString(6));
                 }
             }
         }

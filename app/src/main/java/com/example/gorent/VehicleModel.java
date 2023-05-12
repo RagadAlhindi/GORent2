@@ -25,6 +25,9 @@ public class VehicleModel {
         this.img=img;
     }
 
+
+
+
     @Override
     public String toString() {
         return "VehicleModel{" +
