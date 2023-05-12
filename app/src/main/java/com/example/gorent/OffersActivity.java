@@ -1,5 +1,10 @@
 package com.example.gorent;
 
+import static com.example.gorent.DBHelperr.COLUMN_ID;
+import static com.example.gorent.DBHelperr.COLUMN_USER_EMAIL;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_MODEL;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_TYPE;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -172,23 +177,26 @@ public class OffersActivity extends AppCompatActivity {
         String userEmail = intent.getStringExtra("userEmail");
 
         Cursor cursor = db.getdata();
+
         if (cursor.getCount() == 0) {
             Toast.makeText(this, "No vehicle for rent", Toast.LENGTH_SHORT).show();
             return;
         } else {
             while (cursor.moveToNext()) {
                 try{
-                    if (cursor.getString(8).equals(userEmail)) {
-                        id.add(cursor.getInt(0));
-                        model.add(cursor.getString(2).concat(" "));
-                        type.add(cursor.getString(3));
+
+                    String em = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USER_EMAIL));
+                    if (em.equals(userEmail)) {
+                        id.add(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)));
+                        model.add(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_MODEL)).concat(" "));
+                        type.add(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_TYPE)));
                     }
 
 
 
                 }catch(Exception e )
                 {
-                    Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }                }
 
         }

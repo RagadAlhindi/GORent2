@@ -1,5 +1,9 @@
 package com.example.gorent;
 
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_MODEL;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_RENT;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_TYPE;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -128,9 +132,12 @@ public class BoatsActivity extends AppCompatActivity {
         }
         else{
             while(cursor.moveToNext()){
-                if (cursor.getString(3).equals("Boat")) {
-                    model.add(cursor.getString(2));
-                    rent.add(cursor.getString(6));
+                if (cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_TYPE)).equals("Boat")) {
+                    model.add(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_MODEL)).concat(" "));
+                    int price =cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_RENT));
+                    String priceAdd=Integer.toString(price).concat(" SR");
+                    rent.add(priceAdd);
+
                 }
             }
         }
