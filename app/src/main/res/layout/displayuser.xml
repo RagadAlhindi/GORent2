@@ -41,17 +41,17 @@
                 android:fontFamily="@font/opensauceonesemibold"
                 android:text="Type"
                 android:textColor="@color/black"
-                android:textSize="23dp" />
+                android:textSize="19dp" />
 
             <TextView
 
                 android:id="@+id/TextType2"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 android:fontFamily="@font/opensauceonesemibold"
                 android:text="Type"
                 android:textColor="@color/black"
-                android:textSize="19dp" />
+                android:textSize="17dp" />
         </LinearLayout>
 
 
