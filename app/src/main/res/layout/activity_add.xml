@@ -80,10 +80,10 @@
                 android:drawableStart="@drawable/custommodelicon"
                 android:drawablePadding="12sp"
                 android:ems="10"
-                android:inputType="text"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textCursorDrawable="@null"
+                android:inputType="textCapSentences"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -142,7 +142,7 @@
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/customelocationicon"
                 android:drawablePadding="12sp"
-                android:inputType="text"
+                android:inputType="textCapSentences"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textCursorDrawable="@null"
@@ -236,6 +236,7 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textCursorDrawable="@null"
+                android:inputType="textCapSentences"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Description" />
