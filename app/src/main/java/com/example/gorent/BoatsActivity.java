@@ -27,13 +27,9 @@ public class BoatsActivity extends AppCompatActivity {
     ImageView basketicon;
     ImageView logouticon;
 
-
     RecyclerView recyclerView;
-
     ArrayList<String> model,type,rent;
-
     DBHelperr DB;
-
     MyAdapter adapter;
 
     @Override

@@ -11,11 +11,11 @@
 
     <EditText
         android:id="@+id/searchtext"
-        android:layout_width="343dp"
+        android:layout_width="360dp"
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="65dp"
         android:autofillHints=""
         android:background="@drawable/custom_search"
         android:drawableStart="@drawable/customsearchicon"
@@ -36,25 +36,30 @@
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="640dp"
+        android:layout_marginBottom="300dp"
         android:animateLayoutChanges="true"
         app:layout_constraintBaseline_toBottomOf="parent"
-        tools:layout_editor_absoluteY="140dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="94dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginStart="7dp"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="30dp"
             tools:layout_editor_absoluteX="185dp" />
     </ScrollView>
 
     <TextView
         android:id="@+id/offerstitle"
-        android:layout_width="340dp"
+        android:layout_width="345dp"
         android:layout_height="39dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/opensauceonebold"
         android:lineSpacingExtra="-1sp"
         android:text="My Vehicles"

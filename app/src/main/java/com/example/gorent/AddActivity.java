@@ -42,7 +42,7 @@ public class AddActivity extends AppCompatActivity {
     Spinner sp ;
     String Colector = "";
     EditText plate, model,location ,UserComment, Amount;
-    Button SubmitSave;
+    ImageView SubmitSave;
 
     Button BSelectImage;
 
