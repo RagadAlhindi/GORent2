@@ -6,6 +6,7 @@ import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_TYPE;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -114,7 +115,8 @@ public class MotorcyclesActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerview);
         adapter=new MyAdapter(this,model,rent);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(gridLayoutManager);
         displaydata();
 
 

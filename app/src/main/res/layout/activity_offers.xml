@@ -35,23 +35,17 @@
 
     <ScrollView
         android:id="@+id/scroll"
-        android:layout_width="wrap_content"
-        android:layout_height="640dp"
-        android:layout_marginBottom="300dp"
-        android:animateLayoutChanges="true"
-        app:layout_constraintBaseline_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="94dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/searchtext"
+        tools:layout_editor_absoluteX="16dp"
+        android:paddingBottom="280dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:layout_marginStart="7dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="30dp"
             tools:layout_editor_absoluteX="185dp" />
     </ScrollView>
 
