@@ -20,7 +20,6 @@
             android:layout_width="140dp"
             android:layout_height="130dp"
             android:maxWidth="140dp"
-            android:src="@drawable/carimage"
             android:maxHeight="140dp"
             android:scaleType="centerCrop" />
 

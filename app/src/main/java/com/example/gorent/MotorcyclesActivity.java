@@ -1,6 +1,7 @@
 package com.example.gorent;
 
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_MODEL;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_PHOTO;
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_RENT;
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_TYPE;
 
@@ -31,6 +32,9 @@ public class MotorcyclesActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     ArrayList<String> model,type,rent;
+
+    ArrayList<byte[]>photo;
+
 
     DBHelperr DB;
 
@@ -113,7 +117,8 @@ public class MotorcyclesActivity extends AppCompatActivity {
         type=new ArrayList<>();
         rent=new ArrayList<>();
         recyclerView=findViewById(R.id.recyclerview);
-        adapter=new MyAdapter(this,model,rent);
+        photo= new ArrayList<byte[]>();
+        adapter=new MyAdapter(this,model,rent,photo);
         recyclerView.setAdapter(adapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -137,6 +142,7 @@ public class MotorcyclesActivity extends AppCompatActivity {
                     int price =cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_RENT));
                     String priceAdd=Integer.toString(price).concat(" SR");
                     rent.add(priceAdd);
+                    photo.add(cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PHOTO)));
                 }
             }
         }

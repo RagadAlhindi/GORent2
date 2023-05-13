@@ -2,6 +2,8 @@
 package com.example.gorent;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +31,12 @@ public class OfeersAdapter extends RecyclerView.Adapter<OfeersAdapter.Holder> {
 
     ArrayList<VehicleModel> vehicle;
 
-    public OfeersAdapter(Context context, ArrayList model, ArrayList type,ArrayList id) {
+    public OfeersAdapter(Context context, ArrayList model, ArrayList type,ArrayList id, ArrayList photo) {
         this.context = context;
         this.model = model;
         this.type=type;
         this.id=id;
+        this.photo=photo;
 
 
     }
@@ -56,6 +59,10 @@ public class OfeersAdapter extends RecyclerView.Adapter<OfeersAdapter.Holder> {
 
         holder.model.setText(String.valueOf(model.get(position)));
         holder.type.setText(String.valueOf(type.get(position)));
+        byte [] convert = (byte[]) photo.get(position);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(convert,0,convert.length);
+        holder.photo.setImageBitmap(bitmap);
+
 
 
 

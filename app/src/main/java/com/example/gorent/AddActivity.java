@@ -56,7 +56,7 @@ public class AddActivity extends AppCompatActivity {
     String selectedCity ="";
 
     String URL ="";
-    Bitmap photoBitmap;
+    Bitmap photoBitmap=null;
     String userEmail;
 
     private ActivityResultLauncher<String> requestPermissionLauncher;
@@ -197,8 +197,12 @@ public class AddActivity extends AppCompatActivity {
                         Toast.makeText(AddActivity.this, "Please fill the pick-up location field", Toast.LENGTH_SHORT).show();
                     } else if (selectedType.equals("")) {
                         Toast.makeText(AddActivity.this, "Please choose the vehicle type", Toast.LENGTH_SHORT).show();
+                    }else if (photoBitmap==null){
+                            Toast.makeText(AddActivity.this, "Please choose  photo", Toast.LENGTH_SHORT).show();
 
-                    } else {
+                        }
+
+                    else {
 
                         Colector += "Plate: " + Plate + "\n";
                         Colector += "Model: " + Model + "\n";

@@ -3,6 +3,7 @@ package com.example.gorent;
 import static com.example.gorent.DBHelperr.COLUMN_ID;
 import static com.example.gorent.DBHelperr.COLUMN_USER_EMAIL;
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_MODEL;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_PHOTO;
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_TYPE;
 
 import androidx.appcompat.app.AlertDialog;
@@ -38,6 +39,9 @@ public class OffersActivity extends AppCompatActivity {
     RecyclerView recycler;
 
     OfeersAdapter adapter;
+
+    ArrayList<byte[]>photo;
+
 
 
 
@@ -118,7 +122,9 @@ public class OffersActivity extends AppCompatActivity {
         type = new ArrayList<>();
         id=new ArrayList();
         recycler = findViewById(R.id.recycler);
-        adapter = new OfeersAdapter(this, model,type, id);
+        photo= new ArrayList<byte[]>();
+
+        adapter = new OfeersAdapter(this, model,type, id,photo);
         recycler.setAdapter(adapter);
         GridLayoutManager gridLayoutManager= new GridLayoutManager(this,1,LinearLayoutManager.VERTICAL,false);
         recycler.setLayoutManager(gridLayoutManager);
@@ -192,6 +198,7 @@ public class OffersActivity extends AppCompatActivity {
                         id.add(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)));
                         model.add(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_MODEL)).concat(" "));
                         type.add(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_TYPE)));
+                        photo.add(cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PHOTO)));
                     }
 
 
