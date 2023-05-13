@@ -6,7 +6,7 @@
     android:layout_margin="8dp"
     android:backgroundTint="@color/white"
     app:cardCornerRadius="8dp"
-    app:cardElevation="8dp"
+    app:cardElevation="5dp"
     android:padding="5dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -64,6 +64,7 @@
             android:background="@drawable/deletebtn"
             android:fontFamily="@font/opensauceonesemibold"
             android:letterSpacing="0"
+            android:textSize="18dp"
             android:text="Delete"
             android:textColor="@color/white" />
     </androidx.appcompat.widget.LinearLayoutCompat>
