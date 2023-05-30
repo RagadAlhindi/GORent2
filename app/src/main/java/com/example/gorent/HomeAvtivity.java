@@ -91,7 +91,7 @@ public class HomeAvtivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // ما انسى ارجع رينتد مو رينت!!!!!!1
-                Intent i3 = new Intent(HomeAvtivity.this, rentActivity.class);
+                Intent i3 = new Intent(HomeAvtivity.this, RentedActivity.class);
                 i3.putExtra("userEmail",userEmail);
                 startActivity(i3);
             }
