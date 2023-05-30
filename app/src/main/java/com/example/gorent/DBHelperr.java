@@ -60,7 +60,7 @@ import java.util.List;
         public static final String RENTID = "rentid";
 
         public static final String VehicleID = "Vid";
-
+        public static final String UEMAIL = "user_email";
 
 
 
@@ -95,9 +95,10 @@ import java.util.List;
             sqLiteDatabase.execSQL("CREATE TABLE " + RENT + " ("
                     + RENTID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + VehicleID + " INTEGER,"
-                    + "FOREIGN KEY(" + VehicleID + ") REFERENCES " + VEHICLE_TABLE + "(" + COLUMN_ID + ")"
+                    + UEMAIL + " TEXT,"
+                    + "FOREIGN KEY(" + VehicleID + ") REFERENCES " + VEHICLE_TABLE + "(" + COLUMN_ID + "),"
+                    + "FOREIGN KEY(" + UEMAIL + ") REFERENCES " + TABLENAME + "(" + COL1 + ")"
                     +")" );
-
 
         }
         // when upgrading
@@ -187,16 +188,19 @@ import java.util.List;
 
 
 
-        public boolean rentV(int VId) {
+        public boolean rentV(int VId, String email) {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put(VehicleID, VId);
+            values.put(UEMAIL, email);
+
             long insertResult = db.insert(RENT, null, values);
 
             // Update the RENTED column to 1 for the rented vehicle
             ContentValues rentedValues = new ContentValues();
             rentedValues.put(COLUMN_RENTED, 1);
-            int updateResult = db.update(VEHICLE_TABLE, rentedValues, COLUMN_ID + "=?", new String[]{String.valueOf(VId)});
+            int updateResult = db.update(VEHICLE_TABLE, rentedValues,
+                    COLUMN_ID + "=?", new String[]{String.valueOf(VId)});
 
             db.close();
 

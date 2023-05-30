@@ -53,10 +53,15 @@ public class rentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent2 = getIntent();
+                userEmail = intent2.getStringExtra("userEmail");
+
+                Intent intent3 = getIntent();
                 // من صفحة الفيو لازم ينرسل لي الاي دي تبع المركبة عشان اقدر استأجرها
-                VID = Integer.parseInt(intent2.getStringExtra("VehicleID"));
+                VID = Integer.parseInt(intent3.getStringExtra("VehicleID"));
+
+
                 DBHelperr dataBaseHelper = new DBHelperr(rentActivity.this);
-                boolean rentSuccess = dataBaseHelper.rentV(VID);
+                boolean rentSuccess = dataBaseHelper.rentV(VID, userEmail);
                 if (rentSuccess) {
 
                     Toast.makeText(rentActivity.this, "Rented successfully", Toast.LENGTH_SHORT).show();

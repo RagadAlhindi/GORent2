@@ -90,7 +90,7 @@ public class HomeAvtivity extends AppCompatActivity {
         basketicon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                // ما انسى ارجع رينتد مو رينت!!!!!!1
+
                 Intent i3 = new Intent(HomeAvtivity.this, RentedActivity.class);
                 i3.putExtra("userEmail",userEmail);
                 startActivity(i3);
