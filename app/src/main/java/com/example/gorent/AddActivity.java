@@ -46,14 +46,13 @@ public class AddActivity extends AppCompatActivity {
 
     Button BSelectImage;
 
-    // One Preview Image
-    ImageView IVPreviewImage;
+
 
     // constant to compare
     // the activity result code
-    int SELECT_PICTURE = 10;
+
     String selectedType ="";
-    String selectedCity ="";
+
 
     String URL ="";
     Bitmap photoBitmap=null;
@@ -61,7 +60,7 @@ public class AddActivity extends AppCompatActivity {
 
     private ActivityResultLauncher<String> requestPermissionLauncher;
     private ActivityResultLauncher<Intent> selectImageLauncher;
-    DBHelperr dataBaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

@@ -41,7 +41,9 @@ import java.util.List;
 
         public static final String COLUMN_USER_EMAIL = "user_email";
 
-
+        public static final String COLUMN_RENTED = "rented";
+        // 0 means not rented and 1 means rented
+        // if vehicle is rented by someone it won't show in the home page
 
 
 
@@ -52,6 +54,15 @@ import java.util.List;
         public static final String COL3 = "name";
         public static final String COL4 = "age";
         Context context;
+
+        // for rent table
+        public static final String RENT = "rent";
+        public static final String RENTID = "rentid";
+
+        public static final String VehicleID = "Vid";
+
+
+
 
 
 
@@ -72,14 +83,20 @@ import java.util.List;
                     + COLUMN_VEHICLE_LOCATION + " TEXT,"
                     + COLUMN_VEHICLE_DESCRIPTION + " TEXT,"
                     + COLUMN_VEHICLE_RENT + " INTEGER,"
-                    + COLUMN_VEHICLE_PHOTO+" BLOB,"
-                    + COLUMN_USER_EMAIL + " TEXT," // Add the user email column
+                    + COLUMN_VEHICLE_PHOTO + " BLOB,"
+                    + COLUMN_USER_EMAIL + " TEXT,"
+                    + COLUMN_RENTED + " INTEGER DEFAULT 0," // Add the new RENTED column with default value 0
                     + "FOREIGN KEY(" + COLUMN_USER_EMAIL + ") REFERENCES " + TABLENAME + "(" + COL1 + ")"
                     + ")";
             sqLiteDatabase.execSQL(createTableStatement);
 
 
             sqLiteDatabase.execSQL("CREATE TABLE " + TABLENAME + " (" + COL1 + " TEXT PRIMARY KEY, " + COL2 + " TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT)");
+            sqLiteDatabase.execSQL("CREATE TABLE " + RENT + " ("
+                    + RENTID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + VehicleID + " INTEGER,"
+                    + "FOREIGN KEY(" + VehicleID + ") REFERENCES " + VEHICLE_TABLE + "(" + COLUMN_ID + ")"
+                    +")" );
 
 
         }
@@ -114,18 +131,6 @@ import java.util.List;
 
 
 
-        public boolean DeleteOne(VehicleModel VM){
-            SQLiteDatabase db = this.getWritableDatabase();
-            String queryString= "Delete From " + VEHICLE_TABLE + " WHERE " + COLUMN_ID + " = " + VM.getId() ;
-            Cursor cursor = db.rawQuery(queryString, null);
-            if(cursor.moveToFirst()){
-                return true;
-            } else{
-                // nothing happens. no one is added.
-                return false;
-            }
-            //close
-        }
 
         public boolean DeleteOne(int id){
             SQLiteDatabase db = this.getWritableDatabase();
@@ -140,40 +145,14 @@ import java.util.List;
             //close
         }
 
-        // we can use this method to show the user's vehicles (he offer it for rent)
-        public List<VehicleModel> getEveryone(){
-            List<VehicleModel> returnList = new ArrayList<>();
-            // get data from database
-            String queryString = "SELECT * FROM " + VEHICLE_TABLE + " v JOIN " + TABLENAME + " u ON v." + COLUMN_USER_EMAIL + " = u." + COL1 + " WHERE u." + COL1 + " = ?";
-            SQLiteDatabase db = this.getReadableDatabase();
-            Cursor cursor = db.rawQuery(queryString, null);
-            if(cursor.moveToFirst()){
-                // loop through cursor results
-                do{
-                    int SID = cursor.getInt(0); // vehicle ID
-                    String VPlate = cursor.getString(1);
-                    String VModel = cursor.getString(1);
-                    String VType = cursor.getString(1);
-                    String VLoc = cursor.getString(1);
-                    String VDescription = cursor.getString(1);
-                    int VRent = cursor.getInt(2);
-                    byte[] photoData=cursor.getBlob(8);
 
-                    VehicleModel newVehicle = new VehicleModel(SID, VPlate, VModel, VType, VLoc, VDescription,VRent,photoData);
-                    returnList.add(newVehicle);
-                }while (cursor.moveToNext());
-            } else{
-                // nothing happens. no one is added.
-            }
-            //close
-            cursor.close();
-            db.close();
-            return returnList;
-        }
 
+
+
+        //getdata() updated to retrieve vehicles that are not rented only
         public Cursor getdata() {
-            SQLiteDatabase DB = this.getWritableDatabase();
-            Cursor cursor = DB.rawQuery("Select * from Vehicle_Table ", null);
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM " + VEHICLE_TABLE + " WHERE " + COLUMN_RENTED + "=0", null);
             return cursor;
         }
 
@@ -205,6 +184,26 @@ import java.util.List;
             if (cursor.getCount() > 0) return true;
             return false;
         }
+
+
+
+        public boolean rentV(int VId) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(VehicleID, VId);
+            long insertResult = db.insert(RENT, null, values);
+
+            // Update the RENTED column to 1 for the rented vehicle
+            ContentValues rentedValues = new ContentValues();
+            rentedValues.put(COLUMN_RENTED, 1);
+            int updateResult = db.update(VEHICLE_TABLE, rentedValues, COLUMN_ID + "=?", new String[]{String.valueOf(VId)});
+
+            db.close();
+
+            // Check whether both queries were executed successfully
+            return insertResult != -1 && updateResult > 0;
+        }
+
 
     }
 
