@@ -207,6 +207,20 @@ import java.util.List;
             // Check whether both queries were executed successfully
             return insertResult != -1 && updateResult > 0;
         }
+// return method that takes the vehicle id
+        public boolean returnV (int vehicleId) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            int rowsDeleted = db.delete(RENT, VehicleID + "=?", new String[]{String.valueOf(vehicleId)} );
+
+            // Update the RENTED column to 1 for the rented vehicle
+            ContentValues rentedValues = new ContentValues();
+            rentedValues.put(COLUMN_RENTED, 0);
+            int updateResult = db.update(VEHICLE_TABLE, rentedValues,
+                    COLUMN_ID + "=?", new String[]{String.valueOf(vehicleId)});
+
+            db.close();
+            return rowsDeleted > 0 && updateResult > 0;
+        }
 
 
     }
