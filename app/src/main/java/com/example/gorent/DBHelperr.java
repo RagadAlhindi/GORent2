@@ -56,7 +56,7 @@ import java.util.List;
         Context context;
 
         // for rent table
-        public static final String RENT = "rent";
+        public static final String RENT = "rental_application";
         public static final String RENTID = "rentid";
 
         public static final String VehicleID = "Vid";

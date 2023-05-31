@@ -197,7 +197,7 @@ public class AddActivity extends AppCompatActivity {
                     } else if (selectedType.equals("")) {
                         Toast.makeText(AddActivity.this, "Please choose the vehicle type", Toast.LENGTH_SHORT).show();
                     }else if (photoBitmap==null){
-                            Toast.makeText(AddActivity.this, "Please choose  photo", Toast.LENGTH_SHORT).show();
+                          Toast.makeText(AddActivity.this, "Please choose  photo", Toast.LENGTH_SHORT).show();
 
                         }
 
