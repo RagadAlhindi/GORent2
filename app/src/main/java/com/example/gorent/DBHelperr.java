@@ -157,6 +157,15 @@ import java.util.List;
             return cursor;
         }
 
+        public Cursor getInfo(int VID) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM " + VEHICLE_TABLE + " WHERE " + COLUMN_ID + "="+VID, null);
+            return cursor;
+        }
+
+
+
+
 
         public Boolean insertData(String email, String password, String name, String age) {
             SQLiteDatabase MyDB = this.getWritableDatabase();

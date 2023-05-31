@@ -1,5 +1,14 @@
 package com.example.gorent;
 
+import static com.example.gorent.DBHelperr.COLUMN_ID;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_DESCRIPTION;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_LOCATION;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_MODEL;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_PHOTO;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_PLATE;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_RENT;
+import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_TYPE;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +16,9 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,6 +27,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -32,6 +44,12 @@ public class rentActivity extends AppCompatActivity {
     ImageView basketicon;
     ImageView logouticon;
     ImageButton submit;
+
+    ImageView Vehicleimg;
+
+    TextView VehicleModel , VehiclePlate , VehicleRent , VehilceLocation , VehicleDesc;
+
+
     int VID;
     String userEmail;
     DatePickerDialog datePickerDialog;
@@ -43,25 +61,28 @@ public class rentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent);
 
+        Intent intent2 = getIntent();
+        userEmail = intent2.getStringExtra("userEmail");
 
-
-
-
-
-
+        Vehicleimg = (ImageView) findViewById(R.id.Vehicleimg);
+        VehicleDesc = (TextView) findViewById(R.id.VehicleDesc);
+        VehicleModel = (TextView) findViewById(R.id.VehicleModel);
+        VehiclePlate = (TextView) findViewById(R.id.Vehicleplate);
+        VehilceLocation = (TextView) findViewById(R.id.VehicleLocation);
+        VehicleRent = (TextView) findViewById(R.id.VehicleRent);
 
         submit = findViewById(R.id.btnSubmit);
+
+
+        Intent intent3 = getIntent();
+        // من صفحة الفيو لازم ينرسل لي الاي دي تبع المركبة عشان اقدر استأجرها
+        VID = intent3.getIntExtra("VehicleID",0);
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = getIntent();
-                userEmail = intent2.getStringExtra("userEmail");
 
-                Intent intent3 = getIntent();
-                // من صفحة الفيو لازم ينرسل لي الاي دي تبع المركبة عشان اقدر استأجرها
-                VID = intent3.getIntExtra("VehicleID",0);
 
 
 
@@ -214,7 +235,40 @@ public class rentActivity extends AppCompatActivity {
 
             }
         });
+        DisplayVehicleInfo();
 
 
     }
+
+    public void DisplayVehicleInfo(){
+
+        DBHelperr dbHelperr = new DBHelperr(this);
+        Cursor cursor = dbHelperr.getInfo(VID);
+
+        if (cursor.getCount() == 0) {
+            Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
+            return;
+
+
+        } else {
+            while (cursor.moveToNext()) {
+                VehicleModel.setText(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_MODEL)));
+                VehicleDesc.setText(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_DESCRIPTION)));
+                VehiclePlate.setText(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PLATE)));
+                VehilceLocation.setText(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_LOCATION)));
+               int price =cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_RENT));
+                String priceAdd=Integer.toString(price).concat(" SR");
+                VehicleRent.setText(priceAdd);
+
+                byte[] photo =  cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PHOTO));
+                Bitmap bitmap = BitmapFactory.decodeByteArray(photo,0,photo.length);
+                Vehicleimg.setImageBitmap(bitmap);
+            }
+        }
+
+
+    }
+
+
+
 }
