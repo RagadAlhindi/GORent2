@@ -263,6 +263,7 @@ public class rentActivity extends AppCompatActivity {
                 byte[] photo =  cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PHOTO));
                 Bitmap bitmap = BitmapFactory.decodeByteArray(photo,0,photo.length);
                 Vehicleimg.setImageBitmap(bitmap);
+
             }
         }
 

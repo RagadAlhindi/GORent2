@@ -152,6 +152,7 @@ import java.util.List;
 
         //getdata() updated to retrieve vehicles that are not rented only
         public Cursor getdata() {
+
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor cursor = db.rawQuery("SELECT * FROM " + VEHICLE_TABLE + " WHERE " + COLUMN_RENTED + "=0", null);
             return cursor;

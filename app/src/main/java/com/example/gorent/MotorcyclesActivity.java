@@ -165,5 +165,6 @@ public class MotorcyclesActivity extends AppCompatActivity implements RecyclerVi
         startActivity(intentView);
 
 
+
     }
 }

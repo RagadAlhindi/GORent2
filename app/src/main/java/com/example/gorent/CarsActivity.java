@@ -168,6 +168,7 @@ public class CarsActivity extends AppCompatActivity implements RecyclerViewInter
             }
 
         }catch(Exception e){
+
             Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
