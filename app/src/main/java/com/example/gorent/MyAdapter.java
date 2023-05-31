@@ -17,16 +17,19 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyviewHolder> {
 
+    private RecyclerViewInterface recyclerViewInterface;
+
     private Context context;
     private ArrayList model  , rent , photo;
 
     ArrayList <VehicleModel> vehicle;
 
-    public MyAdapter(Context context, ArrayList model, ArrayList rent , ArrayList photo ) {
+    public MyAdapter(Context context, ArrayList model, ArrayList rent , ArrayList photo , RecyclerViewInterface recyclerViewInterface ) {
         this.context = context;
         this.model = model;
         this.photo=photo;
         this.rent = rent;
+        this.recyclerViewInterface=recyclerViewInterface;
 
     }
 
@@ -77,6 +80,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyviewHolder> {
             model = itemView.findViewById(R.id.textModel);
             rent = itemView.findViewById(R.id.textPrice);
             photo = itemView.findViewById(R.id.Vimage);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerViewInterface != null){
+                        int pos = getAdapterPosition();
+                        if(pos != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onVehicleClicked(pos);
+                        }
+                    }
+                }
+            });
+
 
         }
     }

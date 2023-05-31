@@ -1,5 +1,6 @@
 package com.example.gorent;
 
+import static com.example.gorent.DBHelperr.COLUMN_ID;
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_MODEL;
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_PHOTO;
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_RENT;
@@ -21,7 +22,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class BoatsActivity extends AppCompatActivity {
+public class BoatsActivity extends AppCompatActivity implements RecyclerViewInterface{
 
     ImageView homeicon;
     ImageView offersicon;
@@ -33,6 +34,8 @@ public class BoatsActivity extends AppCompatActivity {
     ArrayList<String> model,type,rent;
     ArrayList<byte[]>photo;
     DBHelperr DB;
+    String userEmail;
+    int Vid;
     MyAdapter adapter;
 
     @Override
@@ -41,7 +44,7 @@ public class BoatsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_boats);
 
         Intent intent = getIntent();
-        String userEmail = intent.getStringExtra("userEmail");
+         userEmail = intent.getStringExtra("userEmail");
 
         homeicon= (ImageView) findViewById(R.id.homeicon);
         homeicon.setOnClickListener(new View.OnClickListener(){
@@ -114,7 +117,7 @@ public class BoatsActivity extends AppCompatActivity {
         rent=new ArrayList<>();
         recyclerView=findViewById(R.id.recyclerview);
         photo= new ArrayList<byte[]>();
-        adapter=new MyAdapter(this,model,rent,photo);
+        adapter=new MyAdapter(this,model,rent,photo,this);
         recyclerView.setAdapter(adapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -139,11 +142,23 @@ public class BoatsActivity extends AppCompatActivity {
                     String priceAdd=Integer.toString(price).concat(" SR");
                     rent.add(priceAdd);
                     photo.add(cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PHOTO)));
+                    Vid=cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
+
 
                 }
             }
         }
 
+
+    }
+
+    @Override
+    public void onVehicleClicked(int position) {
+
+        Intent intentView = new Intent(BoatsActivity.this,rentActivity.class);
+        intentView.putExtra("userEmail", userEmail);
+        intentView.putExtra("VehicleID",Vid);
+        startActivity(intentView);
 
     }
 }

@@ -1,5 +1,6 @@
 package com.example.gorent;
 
+import static com.example.gorent.DBHelperr.COLUMN_ID;
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_MODEL;
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_PHOTO;
 import static com.example.gorent.DBHelperr.COLUMN_VEHICLE_RENT;
@@ -23,7 +24,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarsActivity extends AppCompatActivity {
+public class CarsActivity extends AppCompatActivity implements RecyclerViewInterface{
 
     ImageView homeicon;
     ImageView offersicon;
@@ -34,6 +35,10 @@ public class CarsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     ArrayList<String> model, type, rent;
+
+    int Vid;
+
+    String userEmail;
 
     ArrayList<byte[]> photo;
 
@@ -52,7 +57,7 @@ public class CarsActivity extends AppCompatActivity {
 
 
             Intent intent = getIntent();
-            String userEmail = intent.getStringExtra("userEmail");
+             userEmail = intent.getStringExtra("userEmail");
 
 
             homeicon = (ImageView) findViewById(R.id.homeicon);
@@ -127,7 +132,7 @@ public class CarsActivity extends AppCompatActivity {
             photo= new ArrayList<byte[]>();
             //vehicles=DB.getEveryone();
             recyclerView = findViewById(R.id.recyclerview);
-            adapter = new MyAdapter(this, model, rent,photo);
+            adapter = new MyAdapter(this, model, rent,photo, this);
             recyclerView.setAdapter(adapter);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(gridLayoutManager);
@@ -152,6 +157,8 @@ public class CarsActivity extends AppCompatActivity {
                         String priceAdd=Integer.toString(price).concat(" SR");
                         rent.add(priceAdd);
                         photo.add(cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PHOTO)));
+                        Vid=cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
+
 
 
                     }
@@ -162,5 +169,15 @@ public class CarsActivity extends AppCompatActivity {
         }catch(Exception e){
             Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onVehicleClicked(int position) {
+
+        Intent intentView = new Intent(CarsActivity.this,rentActivity.class);
+        intentView.putExtra("userEmail", userEmail);
+        intentView.putExtra("VehicleID",Vid);
+        startActivity(intentView);
+
     }
 }
