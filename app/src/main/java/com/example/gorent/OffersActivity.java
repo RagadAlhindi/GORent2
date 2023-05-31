@@ -184,7 +184,7 @@ public class OffersActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String userEmail = intent.getStringExtra("userEmail");
 
-        Cursor cursor = db.getdata();
+        Cursor cursor = db.getMYdata();
 
         if (cursor.getCount() == 0) {
             Toast.makeText(this, "No vehicle for rent", Toast.LENGTH_SHORT).show();
