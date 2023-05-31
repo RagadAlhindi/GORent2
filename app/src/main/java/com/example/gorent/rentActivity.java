@@ -46,6 +46,10 @@ public class rentActivity extends AppCompatActivity {
 
 
 
+
+
+
+
         submit = findViewById(R.id.btnSubmit);
 
 
@@ -57,7 +61,9 @@ public class rentActivity extends AppCompatActivity {
 
                 Intent intent3 = getIntent();
                 // من صفحة الفيو لازم ينرسل لي الاي دي تبع المركبة عشان اقدر استأجرها
-                VID = Integer.parseInt(intent3.getStringExtra("VehicleID"));
+                VID = intent3.getIntExtra("VehicleID",0);
+
+
 
 
                 DBHelperr dataBaseHelper = new DBHelperr(rentActivity.this);
