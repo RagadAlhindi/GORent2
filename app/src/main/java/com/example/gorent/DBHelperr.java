@@ -156,6 +156,13 @@ import java.util.List;
             return cursor;
         }
 
+        public Cursor getMYdata() {
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM " + VEHICLE_TABLE , null);
+            return cursor;
+        }
+
         public Cursor getInfo(int VID) {
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor cursor = db.rawQuery("SELECT * FROM " + VEHICLE_TABLE + " WHERE " + COLUMN_ID + "="+VID, null);
