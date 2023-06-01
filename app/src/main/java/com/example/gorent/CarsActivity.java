@@ -17,12 +17,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CarsActivity extends AppCompatActivity implements RecyclerViewInterface{
 
@@ -176,7 +174,7 @@ public class CarsActivity extends AppCompatActivity implements RecyclerViewInter
     @Override
     public void onVehicleClicked(int position) {
 
-        Intent intentView = new Intent(CarsActivity.this,rentActivity.class);
+        Intent intentView = new Intent(CarsActivity.this, rentActivity.class);
         intentView.putExtra("userEmail", userEmail);
         intentView.putExtra("VehicleID",Vid);
         startActivity(intentView);

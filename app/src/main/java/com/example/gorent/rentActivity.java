@@ -22,6 +22,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -43,7 +44,9 @@ public class rentActivity extends AppCompatActivity {
     ImageView homeicon;
     ImageView basketicon;
     ImageView logouticon;
-    ImageButton submit;
+    ImageView addicon;
+    Button submit;
+    Button vehicleback;
 
     ImageView Vehicleimg;
 
@@ -176,6 +179,18 @@ public class rentActivity extends AppCompatActivity {
         });
 
 
+        /*vehicleback = (Button) findViewById(R.id.vehicleback);
+        vehicleback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (getIntent().getStringExtra("PreviousPage") != null || getIntent().getStringExtra("PreviousPage") == "Sign-in")
+                    startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
+                else
+                    startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+            }
+
+        });*/
+
         homeicon = (ImageView) findViewById(R.id.homeicon);
         homeicon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,7 +213,15 @@ public class rentActivity extends AppCompatActivity {
             }
         });
 
-
+        addicon= (ImageView) findViewById(R.id.addicon);
+        addicon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i3 = new Intent(rentActivity.this, AddActivity.class);
+                i3.putExtra("userEmail",userEmail);
+                startActivity(i3);;
+            }
+        });
 
         basketicon= (ImageView) findViewById(R.id.basketicon);
         basketicon.setOnClickListener(new View.OnClickListener(){

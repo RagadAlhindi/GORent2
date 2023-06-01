@@ -67,9 +67,7 @@ import java.util.List;
 
 
         public DBHelperr(@Nullable Context context) {
-            super(context, "NEWGORENT.db", null, 1);
-
-
+            super(context, "GORENT1.db", null, 1);
         }
 
         // when creating the database

@@ -155,7 +155,7 @@ public class BoatsActivity extends AppCompatActivity implements RecyclerViewInte
     @Override
     public void onVehicleClicked(int position) {
 
-        Intent intentView = new Intent(BoatsActivity.this,rentActivity.class);
+        Intent intentView = new Intent(BoatsActivity.this, rentActivity.class);
         intentView.putExtra("userEmail", userEmail);
         intentView.putExtra("VehicleID",Vid);
         startActivity(intentView);

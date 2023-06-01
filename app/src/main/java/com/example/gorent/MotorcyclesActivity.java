@@ -159,7 +159,7 @@ public class MotorcyclesActivity extends AppCompatActivity implements RecyclerVi
     @Override
     public void onVehicleClicked(int position) {
 
-        Intent intentView = new Intent(MotorcyclesActivity.this,rentActivity.class);
+        Intent intentView = new Intent(MotorcyclesActivity.this, rentActivity.class);
         intentView.putExtra("userEmail", userEmail);
         intentView.putExtra("VehicleID",Vid);
         startActivity(intentView);
