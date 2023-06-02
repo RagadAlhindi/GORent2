@@ -57,6 +57,8 @@ public class rentActivity extends AppCompatActivity {
     String userEmail;
     DatePickerDialog datePickerDialog;
 
+    String Vtype;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,11 @@ public class rentActivity extends AppCompatActivity {
 
         Intent intent2 = getIntent();
         userEmail = intent2.getStringExtra("userEmail");
+        Vtype = intent2.getStringExtra("type");
+
+        Intent intent3 = getIntent();
+        // من صفحة الفيو لازم ينرسل لي الاي دي تبع المركبة عشان اقدر استأجرها
+        VID = intent3.getIntExtra("VehicleID",0);
 
         Vehicleimg = (ImageView) findViewById(R.id.Vehicleimg);
         VehicleDesc = (TextView) findViewById(R.id.VehicleDesc);
@@ -73,13 +80,44 @@ public class rentActivity extends AppCompatActivity {
         VehiclePlate = (TextView) findViewById(R.id.Vehicleplate);
         VehilceLocation = (TextView) findViewById(R.id.VehicleLocation);
         VehicleRent = (TextView) findViewById(R.id.VehicleRent);
+        vehicleback = (Button)findViewById(R.id.vehicleback) ;
+
+        vehicleback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(Vtype.equals("Car")){
+                    Intent rentType = new Intent(rentActivity.this, CarsActivity.class);
+                    rentType.putExtra("userEmail",userEmail);
+                    rentType.putExtra("VehicleID",VID);
+                    rentType.putExtra("type",Vtype);
+                    startActivity(rentType);
+
+
+                }
+                else if(Vtype.equals("Boat")){
+                    Intent rentType = new Intent(rentActivity.this, BoatsActivity.class);
+                    rentType.putExtra("userEmail",userEmail);
+                    rentType.putExtra("VehicleID",VID);
+                    rentType.putExtra("type",Vtype);
+                    startActivity(rentType);
+
+                } else if (Vtype.equals("Motorcycle")) {
+                    Intent rentType = new Intent(rentActivity.this, MotorcyclesActivity.class);
+                    rentType.putExtra("userEmail",userEmail);
+                    rentType.putExtra("VehicleID",VID);
+                    rentType.putExtra("type",Vtype);
+                    startActivity(rentType);
+
+                }
+
+            }
+        });
 
         submit = findViewById(R.id.btnSubmit);
 
 
-        Intent intent3 = getIntent();
-        // من صفحة الفيو لازم ينرسل لي الاي دي تبع المركبة عشان اقدر استأجرها
-        VID = intent3.getIntExtra("VehicleID",0);
+
 
 
         submit.setOnClickListener(new View.OnClickListener() {

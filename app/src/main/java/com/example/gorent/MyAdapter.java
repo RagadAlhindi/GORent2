@@ -20,24 +20,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyviewHolder> {
     private RecyclerViewInterface recyclerViewInterface;
 
     private Context context;
-    private ArrayList model  , rent , photo , id;
+    private ArrayList model  , rent , photo , id,type;
 
     ArrayList <VehicleModel> vehicle;
-
-    public MyAdapter(Context context, ArrayList model, ArrayList rent , ArrayList photo , RecyclerViewInterface recyclerViewInterface ) {
-        this.context = context;
-        this.model = model;
-        this.photo=photo;
-        this.rent = rent;
-        this.recyclerViewInterface=recyclerViewInterface;
-
-    }
 
     public MyAdapter(Context context, ArrayList model, ArrayList rent,ArrayList id, ArrayList photo , RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.model = model;
         this.rent=rent;
         this.id=id;
+        this.photo=photo;
+        this.recyclerViewInterface=recyclerViewInterface;
+
+
+    }
+
+    public MyAdapter(Context context, ArrayList model, ArrayList rent,ArrayList id,ArrayList type ,  ArrayList photo , RecyclerViewInterface recyclerViewInterface) {
+        this.context = context;
+        this.model = model;
+        this.rent=rent;
+        this.id=id;
+        this.type=type;
         this.photo=photo;
         this.recyclerViewInterface=recyclerViewInterface;
 

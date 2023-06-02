@@ -44,6 +44,7 @@ public class CarsActivity extends AppCompatActivity implements RecyclerViewInter
     ArrayList<VehicleModel> vehicles;
 
     DBHelperr DB;
+    String Vtype;
 
     MyAdapter adapter;
 
@@ -132,7 +133,7 @@ public class CarsActivity extends AppCompatActivity implements RecyclerViewInter
             id=new ArrayList();
             //vehicles=DB.getEveryone();
             recyclerView = findViewById(R.id.recyclerview);
-            adapter = new MyAdapter(this, model, rent,id,photo, this);
+            adapter = new MyAdapter(this, model, rent,id ,type,photo, this);
             recyclerView.setAdapter(adapter);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(gridLayoutManager);
@@ -152,6 +153,7 @@ public class CarsActivity extends AppCompatActivity implements RecyclerViewInter
             } else {
                 while (cursor.moveToNext()) {
                     if (cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_TYPE)).equals("Car")) {
+                        type.add(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_TYPE)));
                         id.add(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)));
                         model.add(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_MODEL)).concat(" "));
                         int price =cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_RENT));
@@ -178,10 +180,11 @@ public class CarsActivity extends AppCompatActivity implements RecyclerViewInter
     public void onVehicleClicked(int position) {
 
         Vid= (int) id.get(position);
-
+        Vtype = type.get(position);
         Intent intentView = new Intent(CarsActivity.this, rentActivity.class);
         intentView.putExtra("userEmail", userEmail);
         intentView.putExtra("VehicleID",Vid);
+        intentView.putExtra("type",Vtype);
         startActivity(intentView);
 
     }
