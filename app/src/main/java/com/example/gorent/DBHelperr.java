@@ -169,6 +169,16 @@ import java.util.List;
             return cursor;
         }
 
+        public Cursor getInfo(String email) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM " + VEHICLE_TABLE + " WHERE " + COLUMN_ID + " IN ( SELECT "  +VehicleID +" FROM "+RENT + " WHERE "+ UEMAIL+ " = ? )",  new String[]{email});
+            return cursor;
+        }
+
+
+
+
+
 
 
 

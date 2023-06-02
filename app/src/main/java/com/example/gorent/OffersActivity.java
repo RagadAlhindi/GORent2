@@ -60,8 +60,6 @@ public class OffersActivity extends AppCompatActivity {
 
 
 
-
-
         homeicon= (ImageView) findViewById(R.id.homeicon);
         homeicon.setOnClickListener(new View.OnClickListener(){
             @Override

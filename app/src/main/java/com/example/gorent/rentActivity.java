@@ -275,20 +275,22 @@ public class rentActivity extends AppCompatActivity {
 
         } else {
             while (cursor.moveToNext()) {
+
+
                 VehicleModel.setText(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_MODEL)));
                 VehicleDesc.setText(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_DESCRIPTION)));
                 VehiclePlate.setText(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PLATE)));
                 VehilceLocation.setText(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_LOCATION)));
-               int price =cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_RENT));
-                String priceAdd=Integer.toString(price).concat(" SR");
+                int price = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_RENT));
+                String priceAdd = Integer.toString(price).concat(" SR");
                 VehicleRent.setText(priceAdd);
 
-                byte[] photo =  cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PHOTO));
-                Bitmap bitmap = BitmapFactory.decodeByteArray(photo,0,photo.length);
+                byte[] photo = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PHOTO));
+                Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
                 Vehicleimg.setImageBitmap(bitmap);
 
-            }
-        }
+            } }
+
 
 
     }

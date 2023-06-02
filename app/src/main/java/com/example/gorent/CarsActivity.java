@@ -33,6 +33,7 @@ public class CarsActivity extends AppCompatActivity implements RecyclerViewInter
     RecyclerView recyclerView;
 
     ArrayList<String> model, type, rent;
+    ArrayList id;
 
     int Vid;
 
@@ -128,9 +129,10 @@ public class CarsActivity extends AppCompatActivity implements RecyclerViewInter
             type = new ArrayList<>();
             rent = new ArrayList<>();
             photo= new ArrayList<byte[]>();
+            id=new ArrayList();
             //vehicles=DB.getEveryone();
             recyclerView = findViewById(R.id.recyclerview);
-            adapter = new MyAdapter(this, model, rent,photo, this);
+            adapter = new MyAdapter(this, model, rent,id,photo, this);
             recyclerView.setAdapter(adapter);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(gridLayoutManager);
@@ -150,12 +152,13 @@ public class CarsActivity extends AppCompatActivity implements RecyclerViewInter
             } else {
                 while (cursor.moveToNext()) {
                     if (cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_TYPE)).equals("Car")) {
+                        id.add(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)));
                         model.add(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_MODEL)).concat(" "));
                         int price =cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_RENT));
                         String priceAdd=Integer.toString(price).concat(" SR");
                         rent.add(priceAdd);
                         photo.add(cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_VEHICLE_PHOTO)));
-                        Vid=cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
+
 
 
 
@@ -173,6 +176,8 @@ public class CarsActivity extends AppCompatActivity implements RecyclerViewInter
 
     @Override
     public void onVehicleClicked(int position) {
+
+        Vid= (int) id.get(position);
 
         Intent intentView = new Intent(CarsActivity.this, rentActivity.class);
         intentView.putExtra("userEmail", userEmail);
