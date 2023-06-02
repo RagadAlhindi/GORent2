@@ -41,6 +41,7 @@
         tools:ignore="TextSizeCheck" />
 
     <ScrollView
+        android:isScrollContainer="false"
         android:id="@+id/ScrollViewID"
         android:layout_width="407dp"
         android:layout_height="465dp"

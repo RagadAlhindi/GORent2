@@ -8,6 +8,7 @@
     tools:context=".rentActivity">
 
     <ScrollView
+        android:isScrollContainer="false"
         android:id="@+id/ScrollViewID"
         android:layout_width="fill_parent"
         android:layout_marginTop="0dp"
